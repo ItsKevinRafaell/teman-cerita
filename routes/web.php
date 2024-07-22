@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\ChatBotController;
-use App\Http\Controllers\RoomChatController;
+use App\Http\Controllers\Chat\ChatBotController;
+use App\Http\Controllers\Chat\RoomChatController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,11 +23,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-route::middleware('auth')->group(function () {
+// route::middleware('auth')->group(function () {
 //    route::get('/room-chat', [RoomChatController::class, 'listRoomChat']); 
    route::post('/room-chat', [RoomChatController::class, 'createRoomChat']);
    route::get('/room-chat/{id}', [RoomChatController::class, 'showRoomChat']);
    route::post('conversation', [ChatBotController::class, 'getChatResponse']);
-});
+// });
 
 require __DIR__.'/auth.php';

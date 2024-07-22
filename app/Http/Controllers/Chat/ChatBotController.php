@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Chat;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Orhanerday\OpenAi\OpenAi;
@@ -74,7 +75,13 @@ class ChatBotController extends Controller
                 'messages' => $rulesMessage,
             ]);
 
-            // $content = trim($result['choices'][0]['message']['content']);
+            $resultArray = json_decode($result, true);
+
+            if (isset($resultArray['choices'][0]['message']['content'])) {
+                $content = trim($resultArray['choices'][0]['message']['content']);
+            } else {
+                return response()->json(['error' => 'Failed to get a valid response from AI'], 500);
+            }
         } catch (\Exception $e) {
             return response()->json(['error' => 'Failed to get response from AI', 'message' => $e->getMessage()], 500);
         }
@@ -82,7 +89,7 @@ class ChatBotController extends Controller
         file_put_contents($path, json_encode($context, JSON_PRETTY_PRINT));
 
         return response()->json([
-            'message' => $result
+            'message' => $content
         ]);
     }
 }
