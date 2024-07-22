@@ -19,15 +19,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-// route::middleware('auth')->group(function () {
-//    route::get('/room-chat', [RoomChatController::class, 'listRoomChat']); 
-   route::post('/room-chat', [RoomChatController::class, 'createRoomChat']);
-   route::get('/room-chat/{id}', [RoomChatController::class, 'showRoomChat']);
-   route::post('conversation', [ChatBotController::class, 'getChatResponse']);
-// });
+route::group(['middleware' => 'auth'], function () {
+   Route::get('/dashboard', [RoomChatController::class, 'dashboard']);
+    Route::get('/room-chat/{id}', [RoomChatController::class, 'showRoomChat']);
+    Route::post('/room-chat', [RoomChatController::class, 'createRoomChat']);
+    
+    Route::post('conversation', [ChatBotController::class, 'getChatResponse']);
+});
 
 require __DIR__.'/auth.php';

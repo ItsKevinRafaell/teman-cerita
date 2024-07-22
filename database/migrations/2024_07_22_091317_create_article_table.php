@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRoomChatTable extends Migration
+class CreateArticleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateRoomChatTable extends Migration
      */
     public function up()
     {
-        Schema::create('room_chats', function (Blueprint $table) {
+        Schema::create('articles', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('conversation_id')->constrained()->onDelete('cascade');
-            $table->string('name');
+            $table->string('title');
+            $table->text('content');
+            $table->string('author');
+            $table->string('thumbnail');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateRoomChatTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('room_chat');
+        Schema::dropIfExists('article');
     }
 }

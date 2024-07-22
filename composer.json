@@ -12,7 +12,8 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "openai-php/client": "^0.10.1",
-        "orhanerday/open-ai": "^5.2"
+        "orhanerday/open-ai": "^5.2",
+        "spatie/laravel-permission": "^6.9"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
