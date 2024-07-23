@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class RoomChat extends Model
 {
     use HasFactory;
-    protected $table = 'room_chat';
+    protected $guarded = [];
+    protected $table = 'room_chats';
 }

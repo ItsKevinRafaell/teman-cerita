@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Chat;
 
 use App\Http\Controllers\Controller;
+use App\Models\ConversationChat;
+use App\Models\RoomChat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Orhanerday\OpenAi\OpenAi;
@@ -25,6 +27,15 @@ class ChatBotController extends Controller
 
         $message = $request->input('message');
         $roomId = $request->input('room_id');
+
+        $roomChat = RoomChat::where('name', $roomId)->first();
+
+        $conversationId = $roomChat->conversation_id;
+
+        $conversation = ConversationChat::updateOrCreate(
+            ['id' => $conversationId],
+            ['last_activity_at' => now(), 'status' => 'active']
+        );
 
         // Path to JSON file for the chat room
         $path = storage_path("app/chat_context_{$roomId}.json");
@@ -85,11 +96,42 @@ class ChatBotController extends Controller
         } catch (\Exception $e) {
             return response()->json(['error' => 'Failed to get response from AI', 'message' => $e->getMessage()], 500);
         }
-        $context[] = ['user' => $message, 'ai' => $result];
+        $context[] = ['user' => $message, 'ai' => $content];
         file_put_contents($path, json_encode($context, JSON_PRETTY_PRINT));
+
+        $conversation->update(['last_activity_at' => now()]);
 
         return response()->json([
             'message' => $content
         ]);
+    }
+
+    public function endConversation(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'room_id' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => 'Invalid input',
+                'messages' => $validator->errors()
+            ], 422);
+        }
+
+        $roomId = $request->input('room_id');
+
+        $roomChat = RoomChat::where('name', $roomId)->first();
+        $conversationId = $roomChat->conversation_id;
+
+        $conversation = ConversationChat::find($conversationId);
+
+        if (!$conversation) {
+            return response()->json(['error' => 'Conversation not found'], 404);
+        }
+
+        $conversation->update(['status' => 'inactive']);
+
+        return response()->json(['message' => 'Conversation ended successfully']);
     }
 }

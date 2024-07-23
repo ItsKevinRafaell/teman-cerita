@@ -16,6 +16,8 @@ class CreateConversationTable extends Migration
         Schema::create('conversations', function (Blueprint $table) {
             $table->id();
             $table->string('file_path');
+            $table->string('status')->default('inactive');
+            $table->timestamp('last_activity_at')->nullable();
             $table->timestamps();
         });
     }

@@ -50,7 +50,7 @@ class ArticleController extends Controller
         Article::create([
             'title' => $request->input('title'),
             'content' => $request->input('content'),
-            'author' => Auth::user()->name,
+            'author' => Auth::id(),
             'thumbnail' => $thumbnailPath,
         ]);
 
@@ -105,7 +105,7 @@ class ArticleController extends Controller
         $article->update([
             'title' => $request->input('title'),
             'content' => $request->input('content'),
-            'author' => Auth::user()->name,
+            'author' => Auth::id(),
             'thumbnail' => $thumbnailPath,
         ]);
 
