@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\Chat\ChatBotController;
-use App\Http\Controllers\Chat\RoomChatController;
+use App\Http\Controllers\Conversation\ChatBotController;
+use App\Http\Controllers\Conversation\ConversationController;
 use Illuminate\Support\Facades\Route;
 
 use App\Models\User; 
@@ -29,9 +29,8 @@ Route::get('/dashboard', function () {
 })->middleware('auth')->name('dashboard'); 
 
 route::group(['middleware' => 'auth'], function () {
-   Route::get('/dashboard', [RoomChatController::class, 'dashboard']);
-    Route::get('/room-chat/{id}', [RoomChatController::class, 'showRoomChat']);
-    Route::post('/room-chat', [RoomChatController::class, 'createRoomChat']);
+   Route::get('/dashboard', [ConversationController::class, 'dashboard']);
+    Route::get('/conversation', [ConversationController::class, 'getConversationContent']);
     
     Route::post('conversation', [ChatBotController::class, 'getChatResponse']);
 });

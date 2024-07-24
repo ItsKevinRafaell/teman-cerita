@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateArticleTable extends Migration
+class CreateArticlesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,7 +17,7 @@ class CreateArticleTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('content');
-            $table->string('author');
+            $table->foreignId('author_id')->references('id')->on('users');
             $table->string('thumbnail');
             $table->timestamps();
         });
@@ -30,6 +30,6 @@ class CreateArticleTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('article');
+        Schema::dropIfExists('articles');
     }
 }

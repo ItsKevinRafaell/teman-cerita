@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateConversationTable extends Migration
+class CreateConversationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,9 +15,10 @@ class CreateConversationTable extends Migration
     {
         Schema::create('conversations', function (Blueprint $table) {
             $table->id();
-            $table->string('file_path');
-            $table->string('status')->default('inactive');
-            $table->timestamp('last_activity_at')->nullable();
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->boolean('status')->default(0);
+            $table->string('file_path')->nullable();
+            $table->time('last_activity_at')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateConversationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('conversation');
+        Schema::dropIfExists('conversations');
     }
 }
