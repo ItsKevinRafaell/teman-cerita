@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Assessment\UserAssessment;
 use App\Http\Controllers\Conversation\ChatBotController;
 use App\Http\Controllers\Conversation\ConversationController;
 use Illuminate\Support\Facades\Route;
@@ -34,5 +35,12 @@ route::group(['middleware' => 'auth'], function () {
     
     Route::post('conversation', [ChatBotController::class, 'getChatResponse']);
 });
+
+route::get('/assessment', [UserAssessment::class, 'getAllAssessment']);
+route::get('/user-assessment', [UserAssessment::class, 'getUserAsssessment']);
+route::get('/user-assessment/{id}', [UserAssessment::class, 'detailUserAssessment']);
+route::post('/assessment', [UserAssessment::class, 'createAssessment']);
+route::post('/submit-assessment', [UserAssessment::class, 'storeAssessment']);
+
 
 require __DIR__.'/auth.php';

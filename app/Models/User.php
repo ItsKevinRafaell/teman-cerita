@@ -52,8 +52,12 @@ class User extends Authenticatable implements FilamentUser
         return $this->hasMany(Article::class, 'author_id');
     }
 
+    public function assessments(){
+        return $this->hasMany(Assessment::class, 'user_id');
+    }
+
     public function canAccessFilament(): bool
     {
-        return $this->hasRole(['filament_user', 'super_admin', 'writer']);
+        return $this->hasRole(['super_admin', 'writer', 'evaluator']);
     }
 }

@@ -56,10 +56,12 @@ class ChatBotController extends Controller
             ]
         ];
 
+        $user = auth()->user()->name;
+
         foreach ($context as $item) {
             $rulesMessage[] = [
                 'role' => 'user',
-                'content' => $item[auth()->user()->name]
+                'content' => $item[`$user`]
             ];
             $rulesMessage[] = [
                 'role' => 'assistant',
