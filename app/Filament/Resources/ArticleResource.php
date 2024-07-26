@@ -9,9 +9,11 @@ use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
@@ -23,30 +25,13 @@ class ArticleResource extends Resource
 {
     protected static ?string $model = Article::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+
+    protected static ?string $navigationGroup = 'Articles';
 
     public static function form(Form $form): Form
     {
       return $form
-            // ->schema([
-            //     Forms\Components\Grid::make()
-            //         ->schema([
-            //             Forms\Components\TextInput::make('title')
-            //                 ->required()
-            //                 ->maxLength(255)
-            //                 ->columnSpan(2),
-            //             Forms\Components\RichEditor::make('content')
-            //                 ->required()
-            //                 ->columnSpan(2),
-            //             Forms\Components\FileUpload::make('thumbnail')
-            //                 ->image()
-            //                 ->directory('article-thumbnails')
-            //                 ->columnSpan(2),
-            //             Forms\Components\Hidden::make('author_id')
-            //                 ->default(auth()->id()),
-            //         ])
-            //         ->columns(2),
-            // ]);
              ->schema([
                 Tabs::make('Heading')
                     ->tabs([
@@ -59,6 +44,10 @@ class ArticleResource extends Resource
                                 TextInput::make('title')
                                 ->required()
                                 ->maxLength(255),
+                                Select::make('category_id')
+                                ->relationship('category', 'name')
+                                ->required(),
+                                Toggle::make('is_article_choosen'),
                                 Hidden::make('author_id')
                                 ->default(auth()->id()),
                             ]),
@@ -97,6 +86,9 @@ class ArticleResource extends Resource
                 Tables\Columns\TextColumn::make('title'),
                 Tables\Columns\TextColumn::make('author.name'),
                 Tables\Columns\ImageColumn::make('thumbnail'),
+                Tables\Columns\TextColumn::make('category.name'),
+                Tables\Columns\TextColumn::make('is_article_choosen')
+                ->label('Is Article Chosen'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()->since(),
             ])

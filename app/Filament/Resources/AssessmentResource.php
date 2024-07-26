@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\AssessmentResource\Pages;
 use App\Filament\Resources\AssessmentResource\RelationManagers;
+use App\Filament\Resources\AssessmentResource\Widgets\AssessmentOverview;
 use App\Models\Assessment;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
@@ -20,7 +21,8 @@ class AssessmentResource extends Resource
 {
     protected static ?string $model = Assessment::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-clipboard-check';
+    protected static ?string $navigationGroup = 'Assessment Management';
 
     public static function form(Form $form): Form
     {
@@ -72,4 +74,11 @@ class AssessmentResource extends Resource
             'edit' => Pages\EditAssessment::route('/{record}/edit'),
         ];
     }    
+
+    public static function getHeaderWidgets(): array
+    {
+        return [
+            AssessmentOverview::class,
+        ];
+    }
 }

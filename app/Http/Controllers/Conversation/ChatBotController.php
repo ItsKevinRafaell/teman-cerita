@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Conversation;
 
 use App\Http\Controllers\Controller;
 use App\Models\Conversation;
-use App\Models\ConversationChat;
-use App\Models\RoomChat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Orhanerday\OpenAi\OpenAi;

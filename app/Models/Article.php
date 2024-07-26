@@ -13,4 +13,8 @@ class Article extends Model
     public function author(){
         return $this->belongsTo(User::class, 'author_id');
     }
+
+    public function category(){
+        return $this->belongsTo(ArticleCategory::class, 'category_id');
+    }
 }

@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\QuestionnaireTypeResource\Pages;
-use App\Filament\Resources\QuestionnaireTypeResource\RelationManagers;
-use App\Models\QuestionnaireType;
+use App\Filament\Resources\ArticleCategoryResource\Pages;
+use App\Filament\Resources\ArticleCategoryResource\RelationManagers;
+use App\Models\ArticleCategory;
 use Filament\Forms;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
@@ -15,13 +15,13 @@ use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class QuestionnaireTypeResource extends Resource
+class ArticleCategoryResource extends Resource
 {
-    protected static ?string $model = QuestionnaireType::class;
+    protected static ?string $model = ArticleCategory::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-clipboard-check';
-    protected static ?string $navigationGroup = 'Assessment Management';
-    protected static ?int $navigationSort = 2;
+    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+
+    protected static ?string $navigationGroup = 'Articles';
 
     public static function form(Form $form): Form
     {
@@ -29,9 +29,7 @@ class QuestionnaireTypeResource extends Resource
             ->schema([
                 TextInput::make('name')
                 ->required()
-                ->maxLength(255),
-                TextInput::make('description')
-                ->maxLength(255),
+                ->label('Article Category')
             ]);
     }
 
@@ -39,8 +37,11 @@ class QuestionnaireTypeResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name'),
-                TextColumn::make('description'),
+                TextColumn::make('name')
+                ->label('Article Category'),
+                TextColumn::make('created_at')
+                ->label('Created')
+                ->dateTime()
             ])
             ->filters([
                 //
@@ -63,9 +64,9 @@ class QuestionnaireTypeResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListQuestionnaireTypes::route('/'),
-            'create' => Pages\CreateQuestionnaireType::route('/create'),
-            'edit' => Pages\EditQuestionnaireType::route('/{record}/edit'),
+            'index' => Pages\ListArticleCategories::route('/'),
+            'create' => Pages\CreateArticleCategory::route('/create'),
+            'edit' => Pages\EditArticleCategory::route('/{record}/edit'),
         ];
     }    
 }

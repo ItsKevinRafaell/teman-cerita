@@ -19,7 +19,9 @@ class AnswerResource extends Resource
 {
     protected static ?string $model = Answer::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-chart-bar';
+    protected static ?string $navigationGroup = 'Assessment Management';
+    protected static ?int $navigationSort = 3;
 
     public static function form(Form $form): Form
     {

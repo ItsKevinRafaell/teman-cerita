@@ -2,8 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\QuestionAssessments;
+use App\Models\QuestionnaireType;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
 class UserSeeder extends Seeder
@@ -15,24 +18,19 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $role1 = Role::create(['name' => 'admin']);
-        $role2 = Role::create(['name' => 'user']);
-        $role3 = Role::create(['name' => 'writer']);
-        
-        // $user1 = User::create([
-        //     'name' => 'Admin Kevin',
-        //     'email' => 'admin@localhost',
-        //     'password' => bcrypt('password'),
-        // ]);
+        $superAdminRole = Role::firstOrCreate(['name' => 'super_admin']);
 
-        // $user1->assignRole($role1);
+        // Create admin user
+        $user = User::firstOrCreate(
+            ['email' => 'admin@gmail.com'],
+            [
+                'name' => 'admin',
+                'password' => Hash::make('admin1234'),
+                'email_verified_at' => now(),
+            ]
+        );
 
-        // $user2 = User::create([
-        //     'name' => 'User Erick',
-        //     'email' => 'user@localhost',
-        //     'password' => bcrypt('password'),
-        // ]);
-        // $user2->assignRole($role2);
-     
+        // Assign super_admin role to the user
+        $user->assignRole($superAdminRole);
     }
 }

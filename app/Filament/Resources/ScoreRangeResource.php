@@ -20,7 +20,9 @@ class ScoreRangeResource extends Resource
 {
     protected static ?string $model = ScoreRange::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-chart-bar';   
+    protected static ?string $navigationGroup = 'Assessment Management';
+    protected static ?int $navigationSort = 5;
 
     public static function form(Form $form): Form
     {

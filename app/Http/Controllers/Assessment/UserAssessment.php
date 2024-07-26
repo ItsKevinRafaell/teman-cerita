@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Assessment;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\AnswerResource;
 use App\Http\Resources\AssessmentDetailResource;
-use App\Http\Resources\UserAssessment as ResourcesUserAssessment;
 use App\Http\Resources\UserAssessmentResource;
 use App\Models\Answer;
 use App\Models\Assessment;

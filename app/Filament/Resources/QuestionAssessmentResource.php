@@ -21,7 +21,9 @@ class QuestionAssessmentResource extends Resource
 {
     protected static ?string $model = QuestionAssessments::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-clipboard-check';
+    protected static ?string $navigationGroup = 'Assessment Management';
+    protected static ?int $navigationSort = 4;
 
     public static function form(Form $form): Form
     {
