@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\QuestionAssessments;
-use App\Models\QuestionnaireType;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -18,19 +16,13 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $superAdminRole = Role::firstOrCreate(['name' => 'super_admin']);
-
-        // Create admin user
-        $user = User::firstOrCreate(
-            ['email' => 'admin@gmail.com'],
+        User::firstOrCreate(
+            ['email' => 'superadmin@temancerita.com'],
             [
-                'name' => 'admin',
-                'password' => Hash::make('admin1234'),
+                'name' => 'Super Admin',
+                'password' => Hash::make('superadmin1234'),
                 'email_verified_at' => now(),
             ]
         );
-
-        // Assign super_admin role to the user
-        $user->assignRole($superAdminRole);
     }
 }
