@@ -13,7 +13,7 @@ class CreateAssessmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('assessments', function (Blueprint $table) {
+        Schema::create('user_assessments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('questionnaire_type_id')->references('id')->on('questionnaire_types')->onDelete('cascade');

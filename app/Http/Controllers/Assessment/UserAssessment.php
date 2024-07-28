@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Assessment;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\AnswerResource;
+use App\Http\Resources\QuestionAnswerResource;
 use App\Http\Resources\AssessmentDetailResource;
 use App\Http\Resources\UserAssessmentResource;
-use App\Models\Answer;
-use App\Models\Assessment;
+use App\Models\QuestionAnswer;
+use App\Models\UserAssessment as Assessment ;
 use App\Models\AssessmentResponse;
 use App\Models\QuestionAssessments;
 use App\Models\QuestionnaireType;
@@ -18,13 +18,13 @@ use Illuminate\Http\Request;
 class UserAssessment extends Controller
 {
     protected $questionnaireType, $assessment, $questionAssessments, $scoreService, $answer;
-    function __construct(QuestionnaireType $questionnaireType, Assessment $assessment, QuestionAssessments $questionAssessments, ScoreInterpretationService $scoreService, Answer $answer)
+    function __construct(QuestionnaireType $questionnaireType, Assessment $assessment, QuestionAssessments $questionAssessments, ScoreInterpretationService $scoreService, QuestionAnswer $questionanswer)
     {
         $this->questionnaireType = $questionnaireType;
         $this->assessment = $assessment;
         $this->questionAssessments = $questionAssessments;
         $this->scoreService = $scoreService;
-        $this->answer = $answer;
+        $this->answer = $questionanswer;
     }
 
    function getAllAssessment() {
@@ -64,7 +64,7 @@ class UserAssessment extends Controller
             ->get(['id', 'content']);
 
         $answers = $this->answer->get();
-        $answers = new AnswerResource($answers);
+        $answers = new QuestionAnswerResource($answers);
 
         return response()->json([
             'assessment' => $assessment,

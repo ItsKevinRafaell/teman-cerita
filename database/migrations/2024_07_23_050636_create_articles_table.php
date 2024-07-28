@@ -20,7 +20,7 @@ class CreateArticlesTable extends Migration
             $table->foreignId('author_id')->references('id')->on('users');
             $table->string('thumbnail');
             $table->foreignId('category_id')->references('id')->on('article_categories');
-            $table->boolean('is_article_choosen')->default(0);
+            $table->boolean('is_choosen')->default(0);
             $table->timestamps();
         });
     }

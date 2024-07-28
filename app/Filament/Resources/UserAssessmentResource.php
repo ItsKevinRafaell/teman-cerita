@@ -2,10 +2,10 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\AssessmentResource\Pages;
-use App\Filament\Resources\AssessmentResource\RelationManagers;
-use App\Filament\Resources\AssessmentResource\Widgets\AssessmentOverview;
-use App\Models\Assessment;
+use App\Filament\Resources\UserAssessmentResource\Pages;
+use App\Filament\Resources\UserAssessmentResource\RelationManagers;
+use App\Filament\Resources\UserAssessmentResource\Widgets\AssessmentOverview;
+use App\Models\UserAssessment;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -17,9 +17,9 @@ use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class AssessmentResource extends Resource
+class UserAssessmentResource extends Resource
 {
-    protected static ?string $model = Assessment::class;
+    protected static ?string $model = UserAssessment::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-clipboard-check';
     protected static ?string $navigationGroup = 'Assessment Management';

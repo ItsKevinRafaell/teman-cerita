@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Super Admin',
                 'password' => Hash::make('superadmin1234'),
-                'email_verified_at' => now(),
+                // 'email_verified_at' => now(),
             ]
         );
     }

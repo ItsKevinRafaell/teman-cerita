@@ -17,7 +17,7 @@ class QuestionnaireType extends Model
 
     public function assessment()
     {
-        return $this->hasMany(Assessment::class);
+        return $this->hasMany(UserAssessment::class);
     }
 
     public function scoreRanges()

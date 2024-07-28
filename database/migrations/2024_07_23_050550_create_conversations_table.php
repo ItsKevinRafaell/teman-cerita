@@ -17,8 +17,8 @@ class CreateConversationsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->boolean('status')->default(0);
-            $table->string('file_path')->nullable();
             $table->time('last_activity_at')->nullable();
+            $table->string('file_path')->nullable();
             $table->timestamps();
         });
     }

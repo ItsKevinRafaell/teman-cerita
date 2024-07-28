@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\AnswerResource\Pages;
-use App\Filament\Resources\AnswerResource\RelationManagers;
-use App\Models\Answer;
+use App\Filament\Resources\QuestionAnswerResource\Pages;
+use App\Filament\Resources\QuestionAnswerResource\RelationManagers;
+use App\Models\QuestionAnswer;
 use Filament\Forms;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
@@ -15,9 +15,9 @@ use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class AnswerResource extends Resource
+class QuestionAnswerResource extends Resource
 {
-    protected static ?string $model = Answer::class;
+    protected static ?string $model = QuestionAnswer::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-chart-bar';
     protected static ?string $navigationGroup = 'Assessment Management';
@@ -28,10 +28,10 @@ class AnswerResource extends Resource
         return $form
             ->schema([
                 TextInput::make('answer_number')
-                ->required()
-                ->numeric(),
+                    ->required()
+                    ->numeric(),
                 TextInput::make('content')
-                ->required()
+                    ->required()
             ]);
     }
 
@@ -39,8 +39,9 @@ class AnswerResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('answer_option'),
+                TextColumn::make('answer_option_description'),
                 TextColumn::make('answer_number'),
-                TextColumn::make('content'),
             ])
             ->filters([
                 //
@@ -52,20 +53,20 @@ class AnswerResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListAnswers::route('/'),
-            'create' => Pages\CreateAnswer::route('/create'),
-            'edit' => Pages\EditAnswer::route('/{record}/edit'),
+            'index' => Pages\ListQuestionAnswers::route('/'),
+            'create' => Pages\CreateQuestionAnswer::route('/create'),
+            'edit' => Pages\EditQuestionAnswer::route('/{record}/edit'),
         ];
-    }    
+    }
 }

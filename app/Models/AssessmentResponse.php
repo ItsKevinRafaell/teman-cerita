@@ -14,7 +14,7 @@ class AssessmentResponse extends Model
 
     public function assessment()
     {
-        return $this->belongsTo(Assessment::class);
+        return $this->belongsTo(UserAssessment::class);
     }
 
     public function question()
@@ -24,6 +24,6 @@ class AssessmentResponse extends Model
 
     public function answer()
     {
-        return $this->belongsTo(Answer::class, 'answer_id');
+        return $this->belongsTo(QuestionAnswer::class);
     }
 }

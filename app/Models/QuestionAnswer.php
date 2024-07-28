@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Answer extends Model
+class QuestionAnswer extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $table = 'answers';
+    protected $table = 'question_answers';
 
     public function assessmentResponses(){
         return $this->hasMany(AssessmentResponse::class, 'answer_id');

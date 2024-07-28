@@ -3,10 +3,10 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\Assessment;
+use App\Models\UserAssessment;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class AssessmentPolicy
+class UserAssessmentPolicy
 {
     use HandlesAuthorization;
 
@@ -18,19 +18,19 @@ class AssessmentPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->can('view_any_assessment');
+        return $user->can('view_any_user::assessment');
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Assessment  $assessment
+     * @param  \App\Models\UserAssessment  $userAssessment
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Assessment $assessment)
+    public function view(User $user, UserAssessment $userAssessment)
     {
-        return $user->can('view_assessment');
+        return $user->can('view_user::assessment');
     }
 
     /**
@@ -41,31 +41,31 @@ class AssessmentPolicy
      */
     public function create(User $user)
     {
-        return $user->can('create_assessment');
+        return $user->can('create_user::assessment');
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Assessment  $assessment
+     * @param  \App\Models\UserAssessment  $userAssessment
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Assessment $assessment)
+    public function update(User $user, UserAssessment $userAssessment)
     {
-        return $user->can('update_assessment');
+        return $user->can('update_user::assessment');
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Assessment  $assessment
+     * @param  \App\Models\UserAssessment  $userAssessment
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Assessment $assessment)
+    public function delete(User $user, UserAssessment $userAssessment)
     {
-        return $user->can('delete_assessment');
+        return $user->can('delete_user::assessment');
     }
 
     /**
@@ -76,19 +76,19 @@ class AssessmentPolicy
      */
     public function deleteAny(User $user)
     {
-        return $user->can('delete_any_assessment');
+        return $user->can('delete_any_user::assessment');
     }
 
     /**
      * Determine whether the user can permanently delete.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Assessment  $assessment
+     * @param  \App\Models\UserAssessment  $userAssessment
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Assessment $assessment)
+    public function forceDelete(User $user, UserAssessment $userAssessment)
     {
-        return $user->can('force_delete_assessment');
+        return $user->can('force_delete_user::assessment');
     }
 
     /**
@@ -99,19 +99,19 @@ class AssessmentPolicy
      */
     public function forceDeleteAny(User $user)
     {
-        return $user->can('force_delete_any_assessment');
+        return $user->can('force_delete_any_user::assessment');
     }
 
     /**
      * Determine whether the user can restore.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Assessment  $assessment
+     * @param  \App\Models\UserAssessment  $userAssessment
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Assessment $assessment)
+    public function restore(User $user, UserAssessment $userAssessment)
     {
-        return $user->can('restore_assessment');
+        return $user->can('restore_user::assessment');
     }
 
     /**
@@ -122,19 +122,19 @@ class AssessmentPolicy
      */
     public function restoreAny(User $user)
     {
-        return $user->can('restore_any_assessment');
+        return $user->can('restore_any_user::assessment');
     }
 
     /**
      * Determine whether the user can replicate.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Assessment  $assessment
+     * @param  \App\Models\UserAssessment  $userAssessment
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function replicate(User $user, Assessment $assessment)
+    public function replicate(User $user, UserAssessment $userAssessment)
     {
-        return $user->can('replicate_assessment');
+        return $user->can('replicate_user::assessment');
     }
 
     /**
@@ -145,7 +145,7 @@ class AssessmentPolicy
      */
     public function reorder(User $user)
     {
-        return $user->can('reorder_assessment');
+        return $user->can('reorder_user::assessment');
     }
 
 }

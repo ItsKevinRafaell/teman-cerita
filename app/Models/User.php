@@ -53,7 +53,7 @@ class User extends Authenticatable implements FilamentUser
     }
 
     public function assessments(){
-        return $this->hasMany(Assessment::class, 'user_id');
+        return $this->hasMany(UserAssessment::class, 'user_id');
     }
 
     public function canAccessFilament(): bool

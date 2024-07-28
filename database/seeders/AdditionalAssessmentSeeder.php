@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\QuestionnaireType;
 use App\Models\QuestionAssessments;
+use App\Models\QuestionAnswer;
 use App\Models\ScoreRange;
 use Illuminate\Database\Seeder;
 
@@ -36,6 +37,28 @@ class AdditionalAssessmentSeeder extends Seeder
                     ['min_score' => 10, 'max_score' => 14, 'interpretation' => 'Kecemasan sedang', 'interpretation_description' => 'Gejala kecemasan sedang.'],
                     ['min_score' => 15, 'max_score' => 21, 'interpretation' => 'Kecemasan berat', 'interpretation_description' => 'Gejala kecemasan berat.'],
                 ],
+                'answers' => [
+                    [
+                        'answer_option' => "Tidak sama sekali",
+                        'answer_option_description' => "Anda tidak pernah mengalami gejala tersebut dalam dua minggu terakhir.",
+                        'answer_number' => 0
+                    ],
+                    [
+                        'answer_option' => "Beberapa hari",
+                        'answer_option_description' => "Anda mengalami gejala tersebut beberapa kali selama dua minggu terakhir, tetapi tidak sering.",
+                        'answer_number' => 1
+                    ],
+                    [
+                        'answer_option' => "Lebih dari separuh waktu",
+                        'answer_option_description' => "Anda mengalami gejala tersebut lebih dari separuh waktu selama dua minggu terakhir, tetapi tidak setiap hari.",
+                        'answer_number' => 2
+                    ],
+                    [
+                        'answer_option' => "Hampir setiap hari",
+                        'answer_option_description' => "Anda mengalami gejala tersebut hampir setiap hari selama dua minggu terakhir.",
+                        'answer_number' => 3
+                    ],
+                ],
             ],
             [
                 'type' => 'Patient Health Questionnaire-9 (PHQ-9)',
@@ -57,6 +80,28 @@ class AdditionalAssessmentSeeder extends Seeder
                     ['min_score' => 10, 'max_score' => 14, 'interpretation' => 'Depresi sedang', 'interpretation_description' => 'Gejala kecemasan sedang.'],
                     ['min_score' => 15, 'max_score' => 19, 'interpretation' => 'Depresi berat', 'interpretation_description' => 'Gejala kecemasan berat.'],
                     ['min_score' => 20, 'max_score' => 27, 'interpretation' => 'Depresi sangat berat', 'interpretation_description' => 'Gejala kecemasan berat.'],
+                ],
+                'answers' => [
+                    [
+                        'answer_option' => "Tidak sama sekali",
+                        'answer_option_description' => "Anda tidak pernah mengalami gejala tersebut dalam dua minggu terakhir.",
+                        'answer_number' => 0
+                    ],
+                    [
+                        'answer_option' => "Beberapa hari",
+                        'answer_option_description' => "Anda mengalami gejala tersebut beberapa kali selama dua minggu terakhir, tetapi tidak sering.",
+                        'answer_number' => 1
+                    ],
+                    [
+                        'answer_option' => "Lebih dari separuh waktu",
+                        'answer_option_description' => "Anda mengalami gejala tersebut lebih dari separuh waktu selama dua minggu terakhir, tetapi tidak setiap hari.",
+                        'answer_number' => 2
+                    ],
+                    [
+                        'answer_option' => "Hampir setiap hari",
+                        'answer_option_description' => "Anda mengalami gejala tersebut hampir setiap hari selama dua minggu terakhir.",
+                        'answer_number' => 3
+                    ],
                 ],
             ],
             [
@@ -80,6 +125,29 @@ class AdditionalAssessmentSeeder extends Seeder
                     ['min_score' => 25, 'max_score' => 29, 'interpretation' => 'Distress sedang', 'interpretation_description' => 'Gejala kecemasan sedang.'],
                     ['min_score' => 30, 'max_score' => 50, 'interpretation' => 'Distress berat', 'interpretation_description' => 'Gejala kecemasan berat.'],
                 ],
+                'answers' => [
+                    [
+                        'answer_option' => "Tidak sama sekali",
+                        'answer_option_description' => "Anda tidak pernah mengalami gejala tersebut dalam empat minggu terakhir.",
+                        'answer_number' => 0
+                    ],
+                    [
+                        'answer_option' => "Kadang-kadang",
+                        'answer_option_description' => "Anda mengalami gejala tersebut kadang-kadang dalam empat minggu terakhir.",
+                        'answer_number' => 1
+                    ],
+                    [
+                        'answer_option' => "Sering",
+                        'answer_option_description' => "Anda sering mengalami gejala tersebut dalam empat minggu terakhir.",
+                        'answer_number' => 2
+                    ],
+                    [
+                        'answer_option' => "Hampir selalu",
+                        'answer_option_description' => "Anda hampir selalu mengalami gejala tersebut dalam empat minggu terakhir.",
+                        'answer_number' => 3
+                    ],
+                ],
+
             ],
             [
                 'type' => 'Beck Depression Inventory-II (BDI-II)',
@@ -112,6 +180,30 @@ class AdditionalAssessmentSeeder extends Seeder
                     ['min_score' => 20, 'max_score' => 28, 'interpretation' => 'Depresi sedang', 'interpretation_description' => 'Gejala kecemasan sedang.'],
                     ['min_score' => 29, 'max_score' => 63, 'interpretation' => 'Depresi berat', 'interpretation_description' => 'Gejala kecemasan berat.'],
                 ],
+                'answers' => [
+                    [
+                        'answer_option' => "Tidak sama sekali",
+                        'answer_option_description' => "Anda tidak pernah mengalami gejala tersebut dalam dua minggu terakhir.",
+                        'answer_number' => 0
+                    ],
+                    [
+                        'answer_option' => "Ringan",
+                        'answer_option_description' => "Anda mengalami gejala tersebut tetapi dalam tingkat yang ringan.",
+                        'answer_number' => 1
+                    ],
+                    [
+                        'answer_option' => "Sedang",
+                        'answer_option_description' => "Anda mengalami gejala tersebut dalam tingkat sedang.",
+                        'answer_number' => 2
+                    ],
+                    [
+                        'answer_option' => "Berat",
+                        'answer_option_description' => "Anda mengalami gejala tersebut dalam tingkat yang berat.",
+                        'answer_number' => 3
+                    ],
+                ],
+
+
             ],
             [
                 'type' => 'WHO-5 Well-Being Index',
@@ -127,8 +219,32 @@ class AdditionalAssessmentSeeder extends Seeder
                     ['min_score' => 0, 'max_score' => 5, 'interpretation' => 'Kesejahteraan sangat rendah', 'interpretation_description' => 'Tidak ada atau sangat sedikit gejala kecemasan.'],
                     ['min_score' => 6, 'max_score' => 10, 'interpretation' => 'Kesejahteraan rendah', 'interpretation_description' => 'Gejala kecemasan ringan.'],
                     ['min_score' => 11, 'max_score' => 15, 'interpretation' => 'Kesejahteraan sedang', 'interpretation_description' => 'Gejala kecemasan sedang.'],
-                    ['min_score' => 16, 'max_score' => 20, 'interpretation' => 'Kesejahteraan tinggi' , 'interpretation_description' => 'Gejala kecemasan berat.'],
+                    ['min_score' => 16, 'max_score' => 20, 'interpretation' => 'Kesejahteraan tinggi', 'interpretation_description' => 'Gejala kecemasan berat.'],
                 ],
+                'answers' => [
+                    [
+                        'answer_option' => "Tidak sama sekali",
+                        'answer_option_description' => "Anda tidak pernah mengalami gejala tersebut dalam dua minggu terakhir.",
+                        'answer_number' => 0
+                    ],
+                    [
+                        'answer_option' => "Kadang-kadang",
+                        'answer_option_description' => "Anda mengalami gejala tersebut kadang-kadang dalam dua minggu terakhir.",
+                        'answer_number' => 1
+                    ],
+                    [
+                        'answer_option' => "Sering",
+                        'answer_option_description' => "Anda sering mengalami gejala tersebut dalam dua minggu terakhir.",
+                        'answer_number' => 2
+                    ],
+                    [
+                        'answer_option' => "Hampir selalu",
+                        'answer_option_description' => "Anda hampir selalu mengalami gejala tersebut dalam dua minggu terakhir.",
+                        'answer_number' => 3
+                    ],
+                ],
+
+
             ],
         ];
 
@@ -149,6 +265,18 @@ class AdditionalAssessmentSeeder extends Seeder
                     'updated_at' => now(),
                 ]);
             }
+
+            foreach ($entry['answers'] as $contents) {
+                QuestionAnswer::create([
+                    'questionnaire_type_id' => $questionnaireType->id,
+                    'answer_option' => $contents['answer_option'],
+                    'answer_option_description' => $contents['answer_option_description'],
+                    'answer_number' => $contents['answer_number'],
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
+
             foreach ($entry['score_ranges'] as $range) {
                 ScoreRange::create([
                     'questionnaire_type_id' => $questionnaireType->id,

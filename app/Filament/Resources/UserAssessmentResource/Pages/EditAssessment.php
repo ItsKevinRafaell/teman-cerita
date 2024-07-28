@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\AssessmentResource\Pages;
+namespace App\Filament\Resources\UserAssessmentResource\Pages;
 
-use App\Filament\Resources\AssessmentResource;
+use App\Filament\Resources\UserAssessmentResource;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
 
 class EditAssessment extends EditRecord
 {
-    protected static string $resource = AssessmentResource::class;
+    protected static string $resource = UserAssessmentResource::class;
 
     protected function getActions(): array
     {

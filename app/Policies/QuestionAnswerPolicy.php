@@ -3,10 +3,10 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\Answer;
+use App\Models\QuestionAnswer;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class AnswerPolicy
+class QuestionAnswerPolicy
 {
     use HandlesAuthorization;
 
@@ -18,19 +18,19 @@ class AnswerPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->can('view_any_answer');
+        return $user->can('view_any_question::answer');
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Answer  $answer
+     * @param  \App\Models\QuestionAnswer  $questionAnswer
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Answer $answer)
+    public function view(User $user, QuestionAnswer $questionAnswer)
     {
-        return $user->can('view_answer');
+        return $user->can('view_question::answer');
     }
 
     /**
@@ -41,31 +41,31 @@ class AnswerPolicy
      */
     public function create(User $user)
     {
-        return $user->can('create_answer');
+        return $user->can('create_question::answer');
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Answer  $answer
+     * @param  \App\Models\QuestionAnswer  $questionAnswer
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Answer $answer)
+    public function update(User $user, QuestionAnswer $questionAnswer)
     {
-        return $user->can('update_answer');
+        return $user->can('update_question::answer');
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Answer  $answer
+     * @param  \App\Models\QuestionAnswer  $questionAnswer
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Answer $answer)
+    public function delete(User $user, QuestionAnswer $questionAnswer)
     {
-        return $user->can('delete_answer');
+        return $user->can('delete_question::answer');
     }
 
     /**
@@ -76,19 +76,19 @@ class AnswerPolicy
      */
     public function deleteAny(User $user)
     {
-        return $user->can('delete_any_answer');
+        return $user->can('delete_any_question::answer');
     }
 
     /**
      * Determine whether the user can permanently delete.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Answer  $answer
+     * @param  \App\Models\QuestionAnswer  $questionAnswer
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Answer $answer)
+    public function forceDelete(User $user, QuestionAnswer $questionAnswer)
     {
-        return $user->can('force_delete_answer');
+        return $user->can('force_delete_question::answer');
     }
 
     /**
@@ -99,19 +99,19 @@ class AnswerPolicy
      */
     public function forceDeleteAny(User $user)
     {
-        return $user->can('force_delete_any_answer');
+        return $user->can('force_delete_any_question::answer');
     }
 
     /**
      * Determine whether the user can restore.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Answer  $answer
+     * @param  \App\Models\QuestionAnswer  $questionAnswer
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Answer $answer)
+    public function restore(User $user, QuestionAnswer $questionAnswer)
     {
-        return $user->can('restore_answer');
+        return $user->can('restore_question::answer');
     }
 
     /**
@@ -122,19 +122,19 @@ class AnswerPolicy
      */
     public function restoreAny(User $user)
     {
-        return $user->can('restore_any_answer');
+        return $user->can('restore_any_question::answer');
     }
 
     /**
      * Determine whether the user can replicate.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Answer  $answer
+     * @param  \App\Models\QuestionAnswer  $questionAnswer
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function replicate(User $user, Answer $answer)
+    public function replicate(User $user, QuestionAnswer $questionAnswer)
     {
-        return $user->can('replicate_answer');
+        return $user->can('replicate_question::answer');
     }
 
     /**
@@ -145,7 +145,7 @@ class AnswerPolicy
      */
     public function reorder(User $user)
     {
-        return $user->can('reorder_answer');
+        return $user->can('reorder_question::answer');
     }
 
 }

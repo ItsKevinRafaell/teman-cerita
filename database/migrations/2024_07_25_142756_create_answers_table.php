@@ -13,10 +13,12 @@ class CreateAnswersTable extends Migration
      */
     public function up()
     {
-        Schema::create('answers', function (Blueprint $table) {
+        Schema::create('question_answers', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('questionnaire_type_id')->references('id')->on('questionnaire_types')->onDelete('cascade');
+            $table->string('answer_option');
+            $table->string('answer_option_description');
             $table->integer('answer_number');
-            $table->string('content');
             $table->timestamps();
         });
     }

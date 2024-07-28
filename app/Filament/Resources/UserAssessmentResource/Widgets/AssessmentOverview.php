@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\AssessmentResource\Widgets;
+namespace App\Filament\Resources\UserAssessmentResource\Widgets;
 
 use Filament\Widgets\Widget;
 
