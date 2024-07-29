@@ -20,7 +20,7 @@ class ScoreRangeResource extends Resource
 {
     protected static ?string $model = ScoreRange::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-chart-bar';   
+    protected static ?string $navigationIcon = 'heroicon-o-chart-bar';
     protected static ?string $navigationGroup = 'Assessment Management';
     protected static ?int $navigationSort = 5;
 
@@ -29,17 +29,22 @@ class ScoreRangeResource extends Resource
         return $form
             ->schema([
                 Select::make('questionnaire_type_id')
-                ->relationship('questionnaireType', 'name')->preload(),
+                    ->label('Tipe Pertanyaan')
+                    ->relationship('questionnaireType', 'name')->preload(),
                 TextInput::make('interpretation')
-                ->required(),
+                    ->label('Interpretasi')
+                    ->required(),
                 TextInput::make('interpretation_description')
-                ->required(),
+                    ->label('Penjelasan Interpretasi')
+                    ->required(),
                 TextInput::make('min_score')
-                ->numeric()
-                ->required(),
+                    ->label('Nilai Terendah')
+                    ->numeric()
+                    ->required(),
                 TextInput::make('max_score')
-                ->numeric()
-                ->required(),
+                    ->label('Nilai Tertinggi')
+                    ->numeric()
+                    ->required(),
             ]);
     }
 
@@ -47,11 +52,16 @@ class ScoreRangeResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('questionnaireType.name'),
-                TextColumn::make('interpretation'),
-                TextColumn::make('interpretation_description'),
-                TextColumn::make('min_score'),
-                TextColumn::make('max_score'),
+                TextColumn::make('questionnaireType.name')
+                ->label('Tipe Pertanyaan'),
+                TextColumn::make('interpretation')
+                ->label('Interpretasi'),
+                TextColumn::make('interpretation_description')
+                ->label('Penjelasan Interpretasi'),
+                TextColumn::make('min_score')
+                ->label('Nilai Terendah'),
+                TextColumn::make('max_score')
+                ->label('Nilai Tertinggi'),
             ])
             ->filters([
                 //
@@ -63,14 +73,14 @@ class ScoreRangeResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -78,5 +88,5 @@ class ScoreRangeResource extends Resource
             'create' => Pages\CreateScoreRange::route('/create'),
             'edit' => Pages\EditScoreRange::route('/{record}/edit'),
         ];
-    }    
+    }
 }

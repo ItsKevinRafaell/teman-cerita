@@ -28,10 +28,12 @@ class QuestionnaireTypeResource extends Resource
         return $form
             ->schema([
                 TextInput::make('name')
-                ->required()
-                ->maxLength(255),
+                    ->label('Nama')
+                    ->required()
+                    ->maxLength(255),
                 TextInput::make('description')
-                ->maxLength(255),
+                    ->label('Deskripsi')
+                    ->maxLength(255),
             ]);
     }
 
@@ -39,8 +41,10 @@ class QuestionnaireTypeResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name'),
-                TextColumn::make('description'),
+                TextColumn::make('name')
+                    ->label('Nama'),
+                TextColumn::make('description')
+                    ->label('Deskripsi'),
             ])
             ->filters([
                 //
@@ -52,14 +56,14 @@ class QuestionnaireTypeResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -67,5 +71,5 @@ class QuestionnaireTypeResource extends Resource
             'create' => Pages\CreateQuestionnaireType::route('/create'),
             'edit' => Pages\EditQuestionnaireType::route('/{record}/edit'),
         ];
-    }    
+    }
 }

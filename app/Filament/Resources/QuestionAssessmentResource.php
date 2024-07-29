@@ -27,13 +27,15 @@ class QuestionAssessmentResource extends Resource
 
     public static function form(Form $form): Form
     {
-       return $form
+        return $form
             ->schema([
                 Select::make('questionnaire_type_id')
-                ->relationship('questionnaireType', 'name')->preload(),
+                    ->label('Tipe Pertanyaan')
+                    ->relationship('questionnaireType', 'name')->preload(),
                 TextInput::make('content')
-                ->required()
-                ->maxLength(255),
+                    ->required()
+                    ->label('Pertanyaan')
+                    ->maxLength(255),
             ]);
     }
 
@@ -41,9 +43,12 @@ class QuestionAssessmentResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('questionnaireType.name'),
-                TextColumn::make('content'),
+                TextColumn::make('questionnaireType.name')
+                    ->label('Tipe Pertanyaan'),
+                TextColumn::make('content')
+                    ->label('Pertanyaan'),
                 TextColumn::make('created_at')
+                    ->label('Dibuat')
                     ->dateTime()->since(),
             ])
             ->filters([
@@ -56,14 +61,14 @@ class QuestionAssessmentResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -71,5 +76,5 @@ class QuestionAssessmentResource extends Resource
             'create' => Pages\CreateQuestionAssessment::route('/create'),
             'edit' => Pages\EditQuestionAssessment::route('/{record}/edit'),
         ];
-    }    
+    }
 }

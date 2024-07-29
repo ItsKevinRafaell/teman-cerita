@@ -28,8 +28,8 @@ class ArticleCategoryResource extends Resource
         return $form
             ->schema([
                 TextInput::make('name')
-                ->required()
-                ->label('Article Category')
+                    ->required()
+                    ->label('Artikel Kategori')
             ]);
     }
 
@@ -38,10 +38,10 @@ class ArticleCategoryResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')
-                ->label('Article Category'),
+                    ->label('Artikel Kategori'),
                 TextColumn::make('created_at')
-                ->label('Created')
-                ->dateTime()
+                    ->label('Dibuat')
+                    ->dateTime()
             ])
             ->filters([
                 //
@@ -50,17 +50,17 @@ class ArticleCategoryResource extends Resource
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+                Tables\Actions\DeleteBulkAction::make()->label('Hapus'),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -68,5 +68,5 @@ class ArticleCategoryResource extends Resource
             'create' => Pages\CreateArticleCategory::route('/create'),
             'edit' => Pages\EditArticleCategory::route('/{record}/edit'),
         ];
-    }    
+    }
 }
