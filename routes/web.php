@@ -5,7 +5,7 @@ use App\Http\Controllers\Conversation\ChatBotController;
 use App\Http\Controllers\Conversation\ConversationController;
 use Illuminate\Support\Facades\Route;
 
-use App\Models\User; 
+use App\Models\User;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -27,12 +27,12 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware('auth')->name('dashboard'); 
+})->middleware('auth')->name('dashboard');
 
 route::group(['middleware' => 'auth'], function () {
    Route::get('/dashboard', [ConversationController::class, 'dashboard']);
     Route::get('/conversation', [ConversationController::class, 'getConversationContent']);
-    
+
     Route::post('conversation', [ChatBotController::class, 'getChatResponse']);
 });
 

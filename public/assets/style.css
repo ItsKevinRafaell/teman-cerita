@@ -405,6 +405,14 @@ input::placeholder {
     color: var(--color-primary) !important;
 }
 
+.bg-red{
+    background-color: var(--color-red);
+}
+
+.text-red{
+    color: var(--color-red);
+}
+
 .bg-gray{
     background-color: var(--color-gray-1);
 }
