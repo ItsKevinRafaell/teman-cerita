@@ -1,11 +1,5 @@
 <?php
 
-use App\Models\User;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
-
-use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\Assessment\UserAssessment;
 use App\Http\Controllers\Conversation\ChatBotController;
@@ -33,8 +27,8 @@ Route::get('/article', [GuestController::class, 'article'])->name('article');
 Route::get('/about', [GuestController::class, 'about'])->name('about');
 Route::get('/contact', [GuestController::class, 'contact'])->name('contact');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
+Route::get('/landing', function () {
+    return view('layouts.landing');
 })->middleware('auth')->name('dashboard');
 
 route::group(['middleware' => 'auth'], function () {
