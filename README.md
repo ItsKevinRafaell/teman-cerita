@@ -6,7 +6,7 @@ php artisan shield:install
 
 php artisan db:seed --class=AdditionalRolesSeeder 
 php artisan db:seed --class=AdditionalAssessmentSeeder
-
+php artisan db:seed --class=ArticleSeeder
 ## Schedule Work
 
 php artisan schedule:work
