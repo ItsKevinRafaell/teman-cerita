@@ -33,7 +33,7 @@
             </form>
         </div>
 
-        <div class="w-50 d-none d-md-block" style="height: 100vh; background-size: cover; background-image: url('/assets/images/about-hero.png'); background-position: center;">
+        <div class="w-50 d-none d-md-block" style="height: 100vh; background-size: cover; background-image: url('{{ asset("/assets/images/about-hero.png") }}'); background-position: center;">
         </div>
     </section>
     <!-- END::CONTACT -->

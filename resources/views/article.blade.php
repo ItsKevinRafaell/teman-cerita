@@ -2,7 +2,7 @@
 
 @section("landing-content")
     <!-- START::HERO -->
-    <section class="container-fluid py-100 d-flex justify-content-center position-relative" style="background-image: url('/assets/images/podcast.jpg'); background-size: cover; background-position: center;">
+    <section class="container-fluid py-100 d-flex justify-content-center position-relative" style="background-image: url('{{ asset("/assets/images/podcast.jpg") }}'); background-size: cover; background-position: center;">
         <div class="overlay position-absolute w-100 h-100" style="background: rgba(0, 0, 0, 0.5); top: 0; left: 0;"></div>
         <div class="wrap text-center position-relative" style="max-width: 700px;">
             <h1 class="h1 text-white text-center">
@@ -127,7 +127,7 @@
                     </div>
 
                     <div class="d-flex align-items-center mb-4">
-                        <img src="/assets/images/faq.png" alt="faq" class="img-picked-article mr-8">
+                        <img src="{{ asset("/assets/images/faq.png") }}" alt="faq" class="img-picked-article mr-8">
 
                         <a href="/article-detail.html" class=" title-article text-white">
                             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos, nihil.
@@ -135,7 +135,7 @@
                     </div>
 
                     <div class="d-flex align-items-center mb-4">
-                        <img src="/assets/images/faq.png" alt="faq" class="img-picked-article mr-8">
+                        <img src="{{ asset("/assets/images/faq.png") }}" alt="faq" class="img-picked-article mr-8">
 
                         <a href="/article-detail.html" class=" title-article text-white">
                             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos, nihil.
@@ -143,7 +143,7 @@
                     </div>
 
                     <div class="d-flex align-items-center mb-4">
-                        <img src="/assets/images/faq.png" alt="faq" class="img-picked-article mr-8">
+                        <img src="{{ asset("/assets/images/faq.png") }}" alt="faq" class="img-picked-article mr-8">
 
                         <a href="/article-detail.html" class=" title-article text-white">
                             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos, nihil.

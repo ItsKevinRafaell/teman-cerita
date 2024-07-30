@@ -2,7 +2,7 @@
 
 @section("landing-content")
     <!-- START::HERO -->
-    <section class="container-fluid py-100 d-flex justify-content-center position-relative" style="background-image: url('/assets/images/about-hero.png'); background-size: cover; background-position: center;">
+    <section class="container-fluid py-100 d-flex justify-content-center position-relative" style="background-image: url('{{ asset("/assets/images/about-hero.png") }}'); background-size: cover; background-position: center;">
         <div class="overlay position-absolute w-100 h-100" style="background: rgba(0, 0, 0, 0.5); top: 0; left: 0;"></div>
         <div class="wrap text-center position-relative" style="max-width: 700px;">
             <h1 class="h1 text-white text-center">
@@ -23,11 +23,11 @@
           <h2 class="h2 text-white mb-24">Apa Itu <span class="text-gradient-pink">TemanCurhat</span> </h2>
           <p class="h4 text-gray mb-48">TemanCurhat adalah sebuah platform yang dirancang untuk membantu kamu melewati masa-masa sulit dengan <span class="text-gradient-pink-2"><strong>dukungan emosional</strong></span> yang kamu butuhkan. Kami percaya bahwa setiap orang berhak mendapatkan pendengar yang <span class="text-gradient-pink-2"><strong>empatik</strong></span>, khususnya dalam situasi yang penuh tekanan dan kesulitan mental.</p>
           <a href="/dashboard.html" class="green-button h5">
-              MULAI SEKARANG <img src="/assets/images/icons/zap.svg" alt="zap">
+              MULAI SEKARANG <img src="{{ asset("/assets/images/icons/zap.svg") }}" alt="zap">
           </a>
         </div>
         <div class="col-12 col-lg-6 order-first order-lg-last offset-lg-1">
-          <img src="/assets/images/yoga-login.png" alt="robo" class="img-fluid img-border">
+          <img src="{{ asset("/assets/images/yoga-login.png") }}" alt="robo" class="img-fluid img-border">
         </div>
       </div>
     </section>
@@ -36,7 +36,7 @@
     <section class="container d-flex py-100">
       <div class="row d-flex align-items-center row-gap-5 row-gap-lg-0">
         <div class="col-12 col-lg-6 order-first order-lg-first">
-          <img src="/assets/images/about-hero.png" alt="why" class="img-fluid img-border">
+          <img src="{{ asset("/assets/images/about-hero.png") }}" alt="why" class="img-fluid img-border">
         </div>
         <div class="col-12 order-lg-last order-last offset-lg-1 col-lg-5">
           <h2 class="h2 text-white mb-24"><span class="text-gradient-pink">Mengapa</span> TemanCurhat Hadir</h2>
@@ -71,15 +71,15 @@
       </div>
       <div class="row" style="row-gap: 48px;">
         <div class="col-12 col-md-4 text-center">
-          <img src="/assets/images/steps/mulai-chat.svg" alt="step-1" class="img-fluid mb-24">
+          <img src="{{ asset("/assets/images/steps/mulai-chat.svg") }}" alt="step-1" class="img-fluid mb-24">
           <h3 class="h3 text-white">1. Mulai Chat</h3>
         </div>
         <div class="col-12 col-md-4 text-center">
-          <img src="/assets/images/steps/response.svg" alt="step-2" class="img-fluid mb-24">
+          <img src="{{ asset("/assets/images/steps/response.svg") }}" alt="step-2" class="img-fluid mb-24">
           <h3 class="h3 text-white">2. Dengar Respon</h3>
         </div>
         <div class="col-12 col-md-4 text-center">
-          <img src="/assets/images/steps/result.svg" alt="step-3" class="img-fluid mb-24">
+          <img src="{{ asset("/assets/images/steps/result.svg") }}" alt="step-3" class="img-fluid mb-24">
           <h3 class="h3 text-white">3. Dapatkan Saran</h3>
         </div>
       </div>
@@ -95,7 +95,7 @@
           <div class="card">
             <div class="card-content">
               <div class="card-image">
-                <img src="/assets/images/icons/feature-4.svg" alt="feature-4">
+                <img src="{{ asset("/assets/images/icons/feature-4.svg") }}" alt="feature-4">
               </div>
               <div class="card-info-wrapper">
                 <div class="card-info">
@@ -110,7 +110,7 @@
           <div class="card">
             <div class="card-content">
               <div class="card-image">
-                <img src="/assets/images/icons/feature-5.svg" alt="feature-5">
+                <img src="{{ asset("/assets/images/icons/feature-5.svg") }}" alt="feature-5">
               </div>
               <div class="card-info-wrapper">
                 <div class="card-info">
@@ -125,7 +125,7 @@
           <div class="card">
             <div class="card-content">
               <div class="card-image">
-                <img src="/assets/images/icons/feature-3.svg" alt="feature-3">
+                <img src="{{ asset("/assets/images/icons/feature-3.svg") }}" alt="feature-3">
               </div>
               <div class="card-info-wrapper">
                 <div class="card-info">
@@ -140,7 +140,7 @@
           <div class="card">
             <div class="card-content">
               <div class="card-image">
-                <img src="/assets/images/icons/feature-1.svg" alt="feature-1">
+                <img src="{{ asset("/assets/images/icons/feature-1.svg") }}" alt="feature-1">
               </div>
               <div class="card-info-wrapper">
                 <div class="card-info">
@@ -155,7 +155,7 @@
           <div class="card">
             <div class="card-content">
               <div class="card-image">
-                <img src="/assets/images/icons/feature-2.svg" alt="feature-2">
+                <img src="{{ asset("/assets/images/icons/feature-2.svg") }}" alt="feature-2">
               </div>
               <div class="card-info-wrapper">
                 <div class="card-info">
@@ -170,7 +170,7 @@
           <div class="card">
             <div class="card-content">
               <div class="card-image">
-                <img src="/assets/images/icons/feature-6.svg" alt="feature-6">
+                <img src="{{ asset("/assets/images/icons/feature-6.svg") }}" alt="feature-6">
               </div>
               <div class="card-info-wrapper">
                 <div class="card-info">
@@ -202,7 +202,7 @@
               </p>
               <div class="wrap d-flex justify-content-between align-items-center">
                 <div class="d-flex align-items-center">
-                  <img src="/assets/images/faq.png" alt="pp-4" class="photo-profile mr-16">
+                  <img src="{{ asset("/assets/images/faq.png") }}" alt="pp-4" class="photo-profile mr-16">
                   <div class="wrap">
                     <h3 class="h3">Agus Wijayanto</h3>
                     <h4 class="h4">Mahasiswa</h4>
@@ -217,7 +217,7 @@
               </p>
               <div class="wrap d-flex justify-content-between align-items-center">
                 <div class="d-flex align-items-center">
-                  <img src="/assets/images/faq.png" alt="pp-4" class="photo-profile mr-16">
+                  <img src="{{ asset("/assets/images/faq.png") }}" alt="pp-4" class="photo-profile mr-16">
                   <div class="wrap">
                     <h3 class="h3">Frederick Octo</h3>
                     <h4 class="h4">Mahasiswa</h4>
@@ -232,7 +232,7 @@
               </p>
               <div class="wrap d-flex justify-content-between align-items-center">
                 <div class="d-flex align-items-center">
-                  <img src="/assets/images/faq.png" alt="pp-4" class="photo-profile mr-16">
+                  <img src="{{ asset("/assets/images/faq.png") }}" alt="pp-4" class="photo-profile mr-16">
                   <div class="wrap">
                     <h3 class="h3">Kevin Pierre</h3>
                     <h4 class="h4">Mahasiswa</h4>
@@ -247,7 +247,7 @@
               </p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="d-flex align-items-center">
-                  <img src="/assets/images/faq.png" alt="pp-4" class="photo-profile mr-16">
+                  <img src="{{ asset("/assets/images/faq.png") }}" alt="pp-4" class="photo-profile mr-16">
                   <div class="wrap">
                     <h3 class="h3">Terrano</h3>
                     <h4 class="h4">Mahasiswa</h4>
@@ -270,7 +270,7 @@
             </p>
             <div class="wrap d-flex justify-content-between align-items-center">
               <div class="d-flex align-items-center">
-                <img src="/assets/images/faq.png" alt="pp-4" class="photo-profile mr-16">
+                <img src="{{ asset("/assets/images/faq.png") }}" alt="pp-4" class="photo-profile mr-16">
                 <div class="wrap">
                   <h3 class="h3">Agus Wijayanto</h3>
                   <h4 class="h4">Mahasiswa</h4>
@@ -285,7 +285,7 @@
             </p>
             <div class="wrap d-flex justify-content-between align-items-center">
               <div class="d-flex align-items-center">
-                <img src="/assets/images/faq.png" alt="pp-4" class="photo-profile mr-16">
+                <img src="{{ asset("/assets/images/faq.png") }}" alt="pp-4" class="photo-profile mr-16">
                 <div class="wrap">
                   <h3 class="h3">Frederick Octo</h3>
                   <h4 class="h4">Mahasiswa</h4>
@@ -300,7 +300,7 @@
             </p>
             <div class="wrap d-flex justify-content-between align-items-center">
               <div class="d-flex align-items-center">
-                <img src="/assets/images/faq.png" alt="pp-4" class="photo-profile mr-16">
+                <img src="{{ asset("/assets/images/faq.png") }}" alt="pp-4" class="photo-profile mr-16">
                 <div class="wrap">
                   <h3 class="h3">Kevin Pierre</h3>
                   <h4 class="h4">Mahasiswa</h4>
@@ -315,7 +315,7 @@
             </p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="d-flex align-items-center">
-                <img src="/assets/images/faq.png" alt="pp-4" class="photo-profile mr-16">
+                <img src="{{ asset("/assets/images/faq.png") }}" alt="pp-4" class="photo-profile mr-16">
                 <div class="wrap">
                   <h3 class="h3">Terrano</h3>
                   <h4 class="h4">Mahasiswa</h4>
@@ -333,7 +333,7 @@
             </p>
             <div class="wrap d-flex justify-content-between align-items-center">
               <div class="d-flex align-items-center">
-                <img src="/assets/images/faq.png" alt="pp-4" class="photo-profile mr-16">
+                <img src="{{ asset("/assets/images/faq.png") }}" alt="pp-4" class="photo-profile mr-16">
                 <div class="wrap">
                   <h3 class="h3">Agus Wijayanto</h3>
                   <h4 class="h4">Mahasiswa</h4>
@@ -348,7 +348,7 @@
             </p>
             <div class="wrap d-flex justify-content-between align-items-center">
               <div class="d-flex align-items-center">
-                <img src="/assets/images/faq.png" alt="pp-4" class="photo-profile mr-16">
+                <img src="{{ asset("/assets/images/faq.png") }}" alt="pp-4" class="photo-profile mr-16">
                 <div class="wrap">
                   <h3 class="h3">Frederick Octo</h3>
                   <h4 class="h4">Mahasiswa</h4>
@@ -363,7 +363,7 @@
             </p>
             <div class="wrap d-flex justify-content-between align-items-center">
               <div class="d-flex align-items-center">
-                <img src="/assets/images/faq.png" alt="pp-4" class="photo-profile mr-16">
+                <img src="{{ asset("/assets/images/faq.png") }}" alt="pp-4" class="photo-profile mr-16">
                 <div class="wrap">
                   <h3 class="h3">Kevin Pierre</h3>
                   <h4 class="h4">Mahasiswa</h4>
@@ -378,7 +378,7 @@
             </p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="d-flex align-items-center">
-                <img src="/assets/images/faq.png" alt="pp-4" class="photo-profile mr-16">
+                <img src="{{ asset("/assets/images/faq.png") }}" alt="pp-4" class="photo-profile mr-16">
                 <div class="wrap">
                   <h3 class="h3">Terrano</h3>
                   <h4 class="h4">Mahasiswa</h4>
@@ -396,7 +396,7 @@
             </p>
             <div class="wrap d-flex justify-content-between align-items-center">
               <div class="d-flex align-items-center">
-                <img src="/assets/images/faq.png" alt="pp-4" class="photo-profile mr-16">
+                <img src="{{ asset("/assets/images/faq.png") }}" alt="pp-4" class="photo-profile mr-16">
                 <div class="wrap">
                   <h3 class="h3">Agus Wijayanto</h3>
                   <h4 class="h4">Mahasiswa</h4>
@@ -411,7 +411,7 @@
             </p>
             <div class="wrap d-flex justify-content-between align-items-center">
               <div class="d-flex align-items-center">
-                <img src="/assets/images/faq.png" alt="pp-4" class="photo-profile mr-16">
+                <img src="{{ asset("/assets/images/faq.png") }}" alt="pp-4" class="photo-profile mr-16">
                 <div class="wrap">
                   <h3 class="h3">Frederick Octo</h3>
                   <h4 class="h4">Mahasiswa</h4>
@@ -426,7 +426,7 @@
             </p>
             <div class="wrap d-flex justify-content-between align-items-center">
               <div class="d-flex align-items-center">
-                <img src="/assets/images/faq.png" alt="pp-4" class="photo-profile mr-16">
+                <img src="{{ asset("/assets/images/faq.png") }}" alt="pp-4" class="photo-profile mr-16">
                 <div class="wrap">
                   <h3 class="h3">Kevin Pierre</h3>
                   <h4 class="h4">Mahasiswa</h4>
@@ -441,7 +441,7 @@
             </p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="d-flex align-items-center">
-                <img src="/assets/images/faq.png" alt="pp-4" class="photo-profile mr-16">
+                <img src="{{ asset("/assets/images/faq.png") }}" alt="pp-4" class="photo-profile mr-16">
                 <div class="wrap">
                   <h3 class="h3">Terrano</h3>
                   <h4 class="h4">Mahasiswa</h4>
@@ -456,40 +456,6 @@
 
     </section>
     <!-- END::TESTIMONIALS -->
-
-
-    <!-- START::FOOTER -->
-    <section class="footer container-fluid pt-48 pb-48" style="margin-top: 100px; border-top: 0.2px solid #ccc;">
-      <div class="container">
-        <div class="row gap-5 gap-lg-0">
-          <div class="col-12 col-lg-3 text-center text-lg-start">
-            <img class="img-fluid" src="/assets/images/logo.svg" alt="logo-footer">
-          </div>
-          <div class="col-12 col-lg-3 text-center text-lg-end">
-            <p class="h4 text-white mb-16 "><strong>Pages</strong></p>
-            <p><a href="/index.html" class="h4 text-gray text-decoration-none mb-16">Home</a></p>
-            <p><a href="/about.html" class="h4 text-gray text-decoration-none mb-16">About</a></p>
-            <p><a href="/article.html" class="h4 text-gray text-decoration-none">Article</a></p>
-            <p><a href="/contact.html" class="h4 text-gray text-decoration-none">Contact</a></p>
-          </div>
-          <div class="col-12 col-lg-3 text-center text-lg-end">
-            <p class="h4 text-white mb-16 "><strong>Quick Links</strong></p>
-            <p><a href="/index.html#faq" class="h4 text-gray text-decoration-none">FAQ</a></p>
-            <p><a href="/about.html#features" class="h4 text-gray text-decoration-none">Feature</a></p>
-            <p><a href="/about.html#mission" class="h4 text-gray text-decoration-none">Mission</a></p>
-            <p><a href="/article.html" class="h4 text-gray text-decoration-none">Article</a></p>
-          </div>
-          <div class="col-12 col-lg-3 text-center text-lg-end">
-            <p class="h4 text-white mb-16 "><strong>Social </strong></p>
-            <p><a href="#" class="h4 text-gray text-decoration-none">Facebook</a></p>
-            <p><a href="#" class="h4 text-gray text-decoration-none">Instagram</a></p>
-            <p><a href="#" class="h4 text-gray text-decoration-none">Twitter</a></p>
-          </div>
-        </div>
-      </div>
-      <p class="text-center text-gray h4 mt-5">Copyright @2024 TemanCerita</p>
-    </section>
-    <!-- END::FOOTER -->
 
 
     </div>
