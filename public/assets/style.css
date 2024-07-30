@@ -274,38 +274,38 @@ body{
 /* Typo */
 .h1{
     font-size: var(--fs-h1);
-    font-weight: var(--fw-bold); 
-    line-height: 54px; 
+    font-weight: var(--fw-bold);
+    line-height: 54px;
 }
 
 .h2{
     font-size: var(--fs-h2);
-    font-weight: var(--fw-medium);  
+    font-weight: var(--fw-medium);
     line-height: 48px;
 }
 
 .h3{
     font-size: var(--fs-h3);
     font-weight: var(--fw-medium);
-    line-height: 36px; 
+    line-height: 36px;
 }
 
 .h4{
     font-size: var(--fs-h4);
-    font-weight: var(--fw-regular);  
+    font-weight: var(--fw-regular);
     line-height: 32px;
 }
 
 .h5{
     font-family: "Poppins", sans-serif;
     font-size: var(--fs-h5);
-    font-weight: var(--fw-bold);  
+    font-weight: var(--fw-bold);
 }
 
 .h6{
     font-family: "Poppins", sans-serif;
     font-size: var(--fs-h6);
-    font-weight: var(--fw-regular);  
+    font-weight: var(--fw-regular);
     line-height: 20px;
 }
 
@@ -373,15 +373,15 @@ input::placeholder {
 }
 
 .email-icon {
-    background-image: url('/images/icons/mail.svg');
+    background-image: url('/assets/images/icons/mail.svg');
 }
 
 .password-icon {
-    background-image: url('/images/icons/lock.svg');
+    background-image: url('/assets/images/icons/lock.svg');
 }
 
 .user-icon {
-    background-image: url('/images/icons/user.svg');
+    background-image: url('/assets/images/icons/user.svg');
 }
 
 /* BG & Text */
@@ -565,7 +565,7 @@ input::placeholder {
 .divider::before, .divider::after {
     content: '';
     flex: 1;
-    border-bottom: 1px solid var(--color-white); 
+    border-bottom: 1px solid var(--color-white);
 }
 .divider::before {
     margin-right: 10px;
@@ -672,7 +672,7 @@ input::placeholder {
     background-position: left;
     background-size: cover;
     z-index: -1;
-    
+
 }
 
 .header .header-image {
@@ -890,7 +890,7 @@ input::placeholder {
 #cards {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;  
+  gap: 8px;
   max-width: 916px;
   width: calc(100% - 20px);
 }
@@ -907,7 +907,7 @@ input::placeholder {
   height: 260px;
   flex-direction: column;
   position: relative;
-  width: 300px;  
+  width: 300px;
 }
 
 .card:hover::before {
@@ -929,16 +929,16 @@ input::placeholder {
 
 .card::before {
   background: radial-gradient(
-    800px circle at var(--mouse-x) var(--mouse-y), 
+    800px circle at var(--mouse-x) var(--mouse-y),
     rgba(255, 255, 255, 0.06),
     transparent 40%
   );
   z-index: 3;
 }
 
-.card::after {  
+.card::after {
   background: radial-gradient(
-    600px circle at var(--mouse-x) var(--mouse-y), 
+    600px circle at var(--mouse-x) var(--mouse-y),
     rgba(255, 255, 255, 0.4),
     transparent 40%
   );
@@ -957,7 +957,7 @@ input::placeholder {
   z-index: 2;
 }
 
-i {  
+i {
   color: rgb(240, 240, 240);
 }
 
@@ -988,7 +988,7 @@ i {
   gap: 10px;
 }
 
-.card-info > i {  
+.card-info > i {
   font-size: 1em;
   height: 20px;
   line-height: 20px;
@@ -1009,15 +1009,15 @@ i {
 
 @media(max-width: 1000px) {
   body {
-    align-items: flex-start;  
+    align-items: flex-start;
     overflow: auto;
   }
-  
-  #cards {    
+
+  #cards {
     max-width: 1000px;
     padding: 10px 0px;
   }
-  
+
   .card {
     flex-shrink: 1;
     width: calc(50% - 4px);
@@ -1029,19 +1029,19 @@ i {
     width: 100%;
     height: 180px;
   }
-  
+
   .card-image {
-    height: 80px;  
+    height: 80px;
   }
-    
+
   .card-info-wrapper {
     padding: 0px 10px;
   }
-  
-  .card-info > i { 
-    font-size: 0.8em; 
+
+  .card-info > i {
+    font-size: 0.8em;
   }
-  
+
   .card-info-title > h3 {
     font-size: 0.9em;
   }
@@ -1150,17 +1150,17 @@ span.badge{
 
 .badge-category{
   background-color: var(--color-white) !important;
-  color: var(--color-primary) !important;  
+  color: var(--color-primary) !important;
 }
 
 .badge-category:hover{
   background-color: var(--color-primary) !important;
-  color: var(--color-white) !important;  
+  color: var(--color-white) !important;
 }
 
 .badge-category.active{
   background-color: var(--color-primary) !important;
-  color: var(--color-secondary) !important;    
+  color: var(--color-secondary) !important;
 }
 
 
@@ -1221,7 +1221,7 @@ span.badge{
 }
 
 .author{
-  width: 48px; 
+  width: 48px;
   height: 48px;
   border-radius: 50%;
   border: 0.5 solid var(--color-gray-1);
@@ -1281,7 +1281,7 @@ span.badge{
     -ms-line-clamp: 1;
     line-clamp: 1;
     white-space: normal;
-  }  
+  }
 }
 
 .carousel-caption a{
