@@ -12,7 +12,7 @@ class ArticleController extends Controller
     }
 
     function getNewestArticles() {
-        // get newest article for index
+        
     }
 
     function getArticles() {
