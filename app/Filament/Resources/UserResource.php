@@ -26,22 +26,26 @@ class UserResource extends Resource
 
     public static function form(Form $form): Form
     {
-       return $form
+        return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                    ->label('Nama Pengguna')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('email')
+                    ->label('Alamat Email')
                     ->email()
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('password')
+                    ->label('Sandi')
                     ->password()
                     ->required()
                     ->maxLength(255),
                 Forms\Components\Select::make('roles')
-                   ->multiple()
-                   ->relationship('roles', 'name')->preload()
+                    ->multiple()
+                    ->label('Peran')
+                    ->relationship('roles', 'name')->preload()
             ]);
     }
 
@@ -49,10 +53,14 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('email'),
-                Tables\Columns\TextColumn::make('roles.name'),
+                Tables\Columns\TextColumn::make('name')
+                ->label('Nama Pengguna'),
+                Tables\Columns\TextColumn::make('email')
+                ->label('Alamat Email'),
+                Tables\Columns\TextColumn::make('roles.name')
+                    ->label('Peran'),
                 Tables\Columns\TextColumn::make('created_at')
+                ->label('Dibuat')
                     ->dateTime(),
             ])
             ->filters([
@@ -65,14 +73,14 @@ class UserResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -80,9 +88,9 @@ class UserResource extends Resource
             'create' => Pages\CreateUser::route('/create'),
             'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
-    }    
+    }
 
-     public static function getHeaderWidgets(): array
+    public static function getHeaderWidgets(): array
     {
         return [
             AssessmentOverview::class,
@@ -90,9 +98,9 @@ class UserResource extends Resource
     }
 
     public static function getWidgets(): array
-{
-    return [
-        AssessmentOverview::class,
-    ];
-}
+    {
+        return [
+            AssessmentOverview::class,
+        ];
+    }
 }

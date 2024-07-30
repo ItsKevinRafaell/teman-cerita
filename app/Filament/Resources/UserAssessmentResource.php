@@ -29,12 +29,15 @@ class UserAssessmentResource extends Resource
         return $form
             ->schema([
                 Select::make('user_id')
-                ->required()
-                ->relationship('user', 'name'),
+                    ->label('Nama Pengguna')
+                    ->required()
+                    ->relationship('user', 'name'),
                 Select::make('questionnaire_type_id')
-                ->required()
-                ->relationship('questionnaireType', 'name'),
+                    ->label('Tipe Pertanyaan')
+                    ->required()
+                    ->relationship('questionnaireType', 'name'),
                 TextInput::make('score')
+                    ->label('Nilai')
             ]);
     }
 
@@ -42,10 +45,14 @@ class UserAssessmentResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('user.name'),
-                TextColumn::make('questionnaireType.name'),
-                TextColumn::make('score'),
+                TextColumn::make('user.name')
+                    ->label('Nama Pengguna'),
+                TextColumn::make('questionnaireType.name')
+                    ->label('Tipe Pertanyaan'),
+                TextColumn::make('score')
+                    ->label('Nilai'),
                 TextColumn::make('created_at')
+                    ->label('Dibuat')
                     ->dateTime()->since(),
             ])
             ->filters([
@@ -58,14 +65,14 @@ class UserAssessmentResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -73,7 +80,7 @@ class UserAssessmentResource extends Resource
             'create' => Pages\CreateAssessment::route('/create'),
             'edit' => Pages\EditAssessment::route('/{record}/edit'),
         ];
-    }    
+    }
 
     public static function getHeaderWidgets(): array
     {

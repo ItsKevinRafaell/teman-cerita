@@ -39,9 +39,9 @@ class QuestionAnswerResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('answer_option'),
-                TextColumn::make('answer_option_description'),
-                TextColumn::make('answer_number'),
+                TextColumn::make('answer_option')->label('Jawaban'),
+                TextColumn::make('answer_option_description')->label('Deskripsi Jawaban'),
+                TextColumn::make('answer_number')->label('Nomor Jawaban'),
             ])
             ->filters([
                 //
