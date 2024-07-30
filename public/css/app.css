@@ -699,6 +699,39 @@ select {
   --tw-contain-paint:  ;
   --tw-contain-style:  ;
 }
+.container {
+  width: 100%;
+}
+@media (min-width: 640px) {
+
+  .container {
+    max-width: 640px;
+  }
+}
+@media (min-width: 768px) {
+
+  .container {
+    max-width: 768px;
+  }
+}
+@media (min-width: 1024px) {
+
+  .container {
+    max-width: 1024px;
+  }
+}
+@media (min-width: 1280px) {
+
+  .container {
+    max-width: 1280px;
+  }
+}
+@media (min-width: 1536px) {
+
+  .container {
+    max-width: 1536px;
+  }
+}
 .absolute {
   position: absolute;
 }
@@ -742,6 +775,9 @@ select {
 .ml-4 {
   margin-left: 1rem;
 }
+.ms-4 {
+  margin-inline-start: 1rem;
+}
 .mt-1 {
   margin-top: 0.25rem;
 }
@@ -768,9 +804,6 @@ select {
 }
 .hidden {
   display: none;
-}
-.h-10 {
-  height: 2.5rem;
 }
 .h-16 {
   height: 4rem;
@@ -804,9 +837,6 @@ select {
 }
 .w-6 {
   width: 1.5rem;
-}
-.w-auto {
-  width: auto;
 }
 .w-full {
   width: 100%;
