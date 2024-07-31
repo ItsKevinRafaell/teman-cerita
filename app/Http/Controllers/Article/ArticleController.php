@@ -79,7 +79,7 @@ class ArticleController extends Controller
             ->with(['author', 'category'])
             ->get()
             ->map(function ($article) {
-                return [ 
+                return [
                     'title' => $article->title,
                     'slug' => $article->slug,
                     'thumbnail' => $article->thumbnail,
@@ -142,6 +142,7 @@ class ArticleController extends Controller
         ];
 
         $recommendArticles = Article::with(['author', 'category'])
+            ->where('slug', '!=', $decodedSlug)
             ->latest()
             ->limit(3)
             ->get()
