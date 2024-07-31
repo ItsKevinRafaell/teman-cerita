@@ -154,4 +154,34 @@
         </div>
     </section>
     <!-- END::CONTENT -->
+
+    @push("push_js_after")
+    <script>
+        document.addEventListener("DOMContentLoaded", function() { 
+            var dataJson = @json($dataJson);
+ 
+            var articles = JSON.parse(dataJson);
+ 
+            console.log(Array.isArray(articles));
+            console.log(articles);
+
+            // var articlesContainer = document.getElementById('articles');
+
+            // articles.forEach(function(article) {
+            //     var articleElement = document.createElement('div');
+            //     articleElement.className = 'article';
+
+            //     // Create article content
+            //     var content = `
+            //         <h2>${article.title}</h2>
+            //         <img src="/storage/${article.thumbnail}" alt="${article.title}">
+            //         <div>${article.content}</div>
+            //     `;
+
+            //     articleElement.innerHTML = content;
+            //     articlesContainer.appendChild(articleElement);
+            // });
+        });
+    </script>
+    @endpush
 @endsection

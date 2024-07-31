@@ -479,36 +479,31 @@
 
     @push("push_js_after")
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Parse JSON data from PHP
-            var articlesJson = @json($articlesJson);
-
-            // Convert JSON string to JavaScript object
-            var articles = JSON.parse(articlesJson);
-
-            // Debug: Cek data articles di konsol
-            console.log(Array.isArray(articles)); // Harus true jika articles adalah array
+        document.addEventListener("DOMContentLoaded", function() { 
+            var dataJson = @json($dataJson);
+ 
+            var articles = JSON.parse(dataJson);
+ 
+            console.log(Array.isArray(articles));
             console.log(articles);
 
-            var articlesContainer = document.getElementById('articles');
+            // var articlesContainer = document.getElementById('articles');
 
-            articles.forEach(function(article) {
-                var articleElement = document.createElement('div');
-                articleElement.className = 'article';
+            // articles.forEach(function(article) {
+            //     var articleElement = document.createElement('div');
+            //     articleElement.className = 'article';
 
-                // Create article content
-                var content = `
-                    <h2>${article.title}</h2>
-                    <img src="/storage/${article.thumbnail}" alt="${article.title}">
-                    <div>${article.content}</div>
-                `;
+            //     // Create article content
+            //     var content = `
+            //         <h2>${article.title}</h2>
+            //         <img src="/storage/${article.thumbnail}" alt="${article.title}">
+            //         <div>${article.content}</div>
+            //     `;
 
-                articleElement.innerHTML = content;
-                articlesContainer.appendChild(articleElement);
-            });
+            //     articleElement.innerHTML = content;
+            //     articlesContainer.appendChild(articleElement);
+            // });
         });
-        console.log(articlesJson);
-        console.log(typeof articlesJson);
     </script>
     @endpush
 
