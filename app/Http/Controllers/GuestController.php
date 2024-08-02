@@ -6,75 +6,69 @@ use Carbon\Carbon;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use App\Models\ArticleCategory;
+use Illuminate\Support\Facades\DB;
 
 class GuestController extends Controller
 {
+
     public function home()
     {
-        $articles = Article::latest()
-            // ->limit(4)
-            ->get()
-            ->map(function ($article) {
-                return [
-                    'slug' => $article->slug,
-                    'title' => $article->title,
-                    'thumbnail' => $article->thumbnail,
-                    'content' => $article->content,
-                    'created_at' => Carbon::parse($article->created_at)->format('d M Y'),
-                    // 'updated_at' => Carbon::parse($article->updated_at)->format('d M Y'),
-                    // 'author_name' => $article->author ? $article->author->name : null,
-                    // 'category_name' => $article->category ? $article->category->name : null,
-                ];
-            });
+        $articles = DB::table('articles')
+            ->select([
+                'slug',
+                'title',
+                'thumbnail',
+                'content',
+                DB::raw('DATE_FORMAT(created_at, "%d %b %Y") as created_at')
+            ])
+            ->latest()
+            ->limit(4)
+            ->get();
+
         $articlesArray = $articles->toArray();
         return view('home', ['dataJson' => json_encode($articlesArray)]);
     }
 
-
     public function article()
     {
-        $articles = Article::with(['author', 'category'])
+        $articles = DB::table('articles')
+            ->select([
+                'articles.slug',
+                'articles.title',
+                'articles.thumbnail',
+                'articles.content',
+                DB::raw('DATE_FORMAT(articles.created_at, "%d %b %Y") as created_at'),
+                'users.name as author_name',
+                'article_categories.name as category_name'
+            ])
+            ->join('users as users', 'articles.author_id', '=', 'users.id')
+            ->join('article_categories as article_categories', 'articles.category_id', '=', 'article_categories.id')
             ->latest()
             ->limit(4)
-            ->get()
-            ->map(function ($article) {
-                return [
-                    'slug' => $article->slug,
-                    'title' => $article->title,
-                    'thumbnail' => $article->thumbnail,
-                    'content' => $article->content,
-                    'created_at' => Carbon::parse($article->created_at)->format('d M Y'),
-                    // 'updated_at' => Carbon::parse($article->updated_at)->format('d M Y'),
+            ->get();
 
-                    'author_name' => $article->author ? $article->author->name : null,
-                    'category_name' => $article->category ? $article->category->name : null,
-                ];
-            });
+        $chosenCategories = DB::table('article_categories')
+            ->select([
+                'article_categories.id',
+                'article_categories.name',
+                DB::raw('COUNT(articles.id) as count')
+            ])
+            ->leftJoin('articles', 'article_categories.id', '=', 'articles.category_id')
+            ->groupBy('article_categories.id', 'article_categories.name')
+            ->orderBy('count', 'desc')
+            ->get();
 
-        $chosenCategories = ArticleCategory::withCount('articles')
-            ->orderBy('articles_count', 'desc')
-            // ->limit(3)
-            ->get()
-            ->map(function ($chosenCategory) {
-                return [
-                    'id' => $chosenCategory->id,
-                    'count' => $chosenCategory->articles_count,
-                    'name' => $chosenCategory->name,
-                ];
-            });
+        $chosenArticles = DB::table('articles')
+            ->select([
+                'title',
+                'slug',
+                'thumbnail',
+                'content'
+            ])
+            ->where('is_choosen', true)
+            ->get();
 
-        $chosenArticles = Article::where('is_choosen', true)
-            ->get()
-            ->map(function ($chosenArticle) {
-                return [ 
-                    'title' => $chosenArticle->title,
-                    'slug' => $chosenArticle->slug,
-                    'thumbnail' => $chosenArticle->thumbnail,
-                    'content' => $chosenArticle->content,
-                ];
-            });
-
-        $totalArticlesCount = Article::count();
+        $totalArticlesCount = DB::table('articles')->count();
 
         $data = [
             'latest_articles' => $articles->toArray(),
@@ -83,7 +77,6 @@ class GuestController extends Controller
             'total_articles_count' => $totalArticlesCount,
         ];
 
-        // Kirim data dalam bentuk JSON ke view
         return view('article', ['dataJson' => json_encode($data)]);
     }
 

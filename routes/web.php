@@ -37,9 +37,8 @@ Route::get('/contact', [GuestController::class, 'contact'])->name('contact');
   
 Route::get('/article-categories', [ArticleController::class, 'getArticleCategories']);
 Route::get('/choosen-article', [ArticleController::class, 'getChoosenArticle']);
-Route::get('/newest-article', [ArticleController::class, 'getNewestArticle']);
-Route::get('/article/{id}', [ArticleController::class, 'getArticleDetail']);
-Route::get('/article/{title}', [ArticleController::class, 'getArticleByTitle']);
+Route::get('/newest-article', [ArticleController::class, 'getNewestArticle']); 
+Route::get('/article/{slug}', [ArticleController::class, 'getArticleBySlug']);
 Route::post('/search-article', [ArticleController::class, 'searchArticle']);
 
 Route::get('/landing', function () {
