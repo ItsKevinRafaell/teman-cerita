@@ -388,92 +388,38 @@
       <div class="text-center text-white h2 mb-24">
         Artikel <span class="text-gradient-pink">Kesehatan</span> Kami
       </div>
-      <div class="row row-gap-4">
-        <div class="col-6 col-md-4 col-lg-3 card-article">
-          <div class="p-1">
-            <div class="card-image-article mb-16 position-relative">
-              <span class="badge h6 text-primary bg-white position-absolute mt-3" style="top: 12px; right: 12px;">24 Jan 2024</span>
-              <img src="/assets/images/yoga-register.png" alt="article-img-" class="img-article img-fluid">
-            </div>
-            <div class="card-content-article">
-              <!-- <div class="h6 text-gray">
-                Admin123
-              </div>        -->
-              <div class="h4 text-white title-article">
-                Skandal terbaru!, ternyata ini tutorial cara cepat kaya versi anak orang kaya dan terbaru
+        @php
+            $articles = json_decode($articlesJson, true);
+        @endphp
+        <div class="row row-gap-4">
+        @forelse ($articles as $article)
+          <div class="col-6 col-md-4 col-lg-3 card-article">
+            <div class="p-1">
+              <div class="card-image-article mb-16 position-relative">
+                <span class="badge h6 text-primary bg-white position-absolute mt-3" style="top: 12px; right: 12px;">{{ \Carbon\Carbon::parse($article['created_at'])->format('d M Y') }}</span>
+                <img src="/assets/images/yoga-register.png" alt="article-img-" class="img-article img-fluid">
+              </div>
+              <div class="card-content-article">
+                <!-- <div class="h6 text-gray">
+                  Admin123
+                </div>        -->
+                <div class="h4 text-white title-article">
+                  {{ $article['title'] }}
+                </div>
+              </div>
+              <div class="card-cta-article">
+                <a href="/article-detail.html" class="article-button">
+                  Baca Selengkapnya
+                </a>
               </div>
             </div>
-            <div class="card-cta-article">
-              <a href="/article-detail.html" class="article-button">
-                Baca Selengkapnya
-              </a>
-            </div>
           </div>
+        @empty
+        <div class="col-12 text-center">
+            <h3 class="h3">Tidak Ada Artikel</h3>
         </div>
-        <div class="col-6 col-md-4 col-lg-3 card-article">
-          <div class="p-1">
-            <div class="card-image-article mb-16 position-relative">
-              <span class="badge h6 text-primary bg-white position-absolute mt-3" style="top: 12px; right: 12px;">24 Jan 2024</span>
-              <img src="/assets/images/yoga-register.png" alt="article-img-" class="img-article img-fluid">
-            </div>
-            <div class="card-content-article">
-              <!-- <div class="h6 text-gray">
-                Admin123
-              </div>        -->
-              <div class="h4 text-white title-article">
-                Skandal terbaru!, ternyata ini tutorial cara cepat kaya versi anak orang kaya dan terbaru
-              </div>
-            </div>
-            <div class="card-cta-article">
-              <a href="/article-detail.html" class="article-button">
-                Baca Selengkapnya
-              </a>
-            </div>
-          </div>
+        @endforelse
         </div>
-        <div class="col-6 col-md-4 col-lg-3 card-article">
-          <div class="p-1">
-            <div class="card-image-article mb-16 position-relative">
-              <span class="badge h6 text-primary bg-white position-absolute mt-3" style="top: 12px; right: 12px;">24 Jan 2024</span>
-              <img src="/assets/images/yoga-register.png" alt="article-img-" class="img-article img-fluid">
-            </div>
-            <div class="card-content-article">
-              <!-- <div class="h6 text-gray">
-                Admin123
-              </div>        -->
-              <div class="h4 text-white title-article">
-                Skandal terbaru!, ternyata ini tutorial cara cepat kaya versi anak orang kaya dan terbaru
-              </div>
-            </div>
-            <div class="card-cta-article">
-              <a href="/article-detail.html" class="article-button">
-                Baca Selengkapnya
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="col-6 col-md-4 col-lg-3 card-article">
-          <div class="p-1">
-            <div class="card-image-article mb-16 position-relative">
-              <span class="badge h6 text-primary bg-white position-absolute mt-3" style="top: 12px; right: 12px;">24 Jan 2024</span>
-              <img src="/assets/images/yoga-register.png" alt="article-img-" class="img-article img-fluid">
-            </div>
-            <div class="card-content-article">
-              <!-- <div class="h6 text-gray">
-                Admin123
-              </div>        -->
-              <div class="h4 text-white title-article">
-                Skandal terbaru!, ternyata ini tutorial cara cepat kaya versi anak orang kaya dan terbaru
-              </div>
-            </div>
-            <div class="card-cta-article">
-              <a href="/article-detail.html" class="article-button">
-                Baca Selengkapnya
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
     <!-- END::ARTICLE -->
 
