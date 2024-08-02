@@ -22,6 +22,13 @@ use App\Http\Controllers\Conversation\ConversationController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('cek', function(){
+    if (Auth::check()) {
+        return response()->json(['authenticated' => true, 'user' => Auth::user()]);
+    } else {
+        return response()->json(['authenticated' => false]);
+    }
+});
 
 Route::get('/', [GuestController::class, 'home'])->name('home');
 Route::get('/article', [GuestController::class, 'article'])->name('article');
@@ -35,7 +42,6 @@ Route::get('/article/{id}', [ArticleController::class, 'getArticleDetail']);
 Route::get('/article/{title}', [ArticleController::class, 'getArticleByTitle']);
 Route::post('/search-article', [ArticleController::class, 'searchArticle']);
 
-
 Route::get('/landing', function () {
     return view('layouts.landing');
 })->middleware('auth')->name('dashboard');
@@ -44,7 +50,7 @@ route::group(['middleware' => 'auth'], function () {
    Route::get('/dashboard', [ConversationController::class, 'dashboard']);
     Route::get('/conversation', [ConversationController::class, 'getConversationContent']);
 
-    Route::post('conversation', [ChatBotController::class, 'getChatResponse']);
+    Route::post('/conversation', [ChatBotController::class, 'getChatResponse']);
 });
 
 route::get('/assessment', [UserAssessment::class, 'getAllAssessment']);
@@ -52,6 +58,5 @@ route::get('/user-assessment', [UserAssessment::class, 'getUserAsssessment']);
 route::get('/user-assessment/{id}', [UserAssessment::class, 'detailUserAssessment']);
 route::post('/assessment', [UserAssessment::class, 'createAssessment']);
 route::post('/submit-assessment', [UserAssessment::class, 'storeAssessment']);
-
 
 require __DIR__.'/auth.php';

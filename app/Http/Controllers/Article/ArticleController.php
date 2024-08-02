@@ -166,7 +166,7 @@ class ArticleController extends Controller
             'detail_articles' => $articleData,
         ];
 
-        // return view('article-detail', ['dataJson' => json_encode($data)]); 
-        return response()->json($data);
+        return view('article-detail', ['dataJson' => json_encode($data)]); 
+        // return response()->json($data);
     }
 }

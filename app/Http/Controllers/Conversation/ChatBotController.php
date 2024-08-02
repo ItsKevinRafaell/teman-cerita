@@ -7,17 +7,18 @@ use App\Models\Conversation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Orhanerday\OpenAi\OpenAi;
+use Illuminate\Support\Facades\Log;
 
 class ChatBotController extends Controller
-{  
+{
     protected $conversationController;
 
     public function __construct(ConversationController $conversationController)
     {
-        $this->conversationController = $conversationController;   
+        $this->conversationController = $conversationController;
     }
 
-     public function getChatResponse(Request $request)
+    public function getChatResponse(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'message' => 'required|string',
@@ -41,11 +42,16 @@ class ChatBotController extends Controller
 
         $path = storage_path("app/chat_context_{$conversation->id}_{$conversation->user->id}_{$conversation->user->name}.json");
 
-        if (!file_exists($path)) {
+        if (file_exists($path)) {
+            Log::info('Context file exists at path: ' . $path);
+            $context = json_decode(file_get_contents($path), true);
+        } else {
+            Log::info('Context file does not exist at path: ' . $path);
+            $context = [];
             $this->conversationController->createJsonFile($conversation);
         }
 
-        $context = file_exists($path) ? json_decode(file_get_contents($path), true) : [];
+        // $context = file_exists($path) ? json_decode(file_get_contents($path), true) : [];
 
         $rulesMessage = [
             [
@@ -59,7 +65,7 @@ class ChatBotController extends Controller
         foreach ($context as $item) {
             $rulesMessage[] = [
                 'role' => 'user',
-                'content' => $item[`$user`]
+                'content' => $item['user']
             ];
             $rulesMessage[] = [
                 'role' => 'assistant',
