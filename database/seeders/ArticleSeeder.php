@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Article;
+use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Carbon;
 
 class ArticleSeeder extends Seeder
 {
@@ -55,7 +57,6 @@ class ArticleSeeder extends Seeder
 
         DB::table('article_categories')->insert($categories);
 
-        // Data artikel
         $articles = [
             [
                 'title' => 'Manfaat Olahraga Teratur untuk Kesehatan dan Kebugaran',
@@ -109,6 +110,16 @@ class ArticleSeeder extends Seeder
             ],
         ];
 
-        DB::table('articles')->insert($articles);
+        foreach ($articles as $article) {
+            Article::create([
+                'title' => $article['title'],
+                'slug' => Str::slug($article['title']),
+                'content' => $article['content'],
+                'thumbnail' => $article['thumbnail'],
+                'author_id' => $article['author_id'],
+                'category_id' => $article['category_id'],
+                // 'slug' diatur otomatis oleh model
+            ]);
+        }
     }
 }

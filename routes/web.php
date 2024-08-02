@@ -1,15 +1,16 @@
 <?php
 
+use App\Models\User;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
+
 use App\Http\Controllers\GuestController;
+use App\Http\Controllers\Article\ArticleController;
 use App\Http\Controllers\Assessment\UserAssessment;
 use App\Http\Controllers\Conversation\ChatBotController;
 use App\Http\Controllers\Conversation\ConversationController;
-use Illuminate\Support\Facades\Route;
-
-use App\Models\User;
-use Laravel\Socialite\Facades\Socialite;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,14 @@ Route::get('/', [GuestController::class, 'home'])->name('home');
 Route::get('/article', [GuestController::class, 'article'])->name('article');
 Route::get('/about', [GuestController::class, 'about'])->name('about');
 Route::get('/contact', [GuestController::class, 'contact'])->name('contact');
+  
+Route::get('/article-categories', [ArticleController::class, 'getArticleCategories']);
+Route::get('/choosen-article', [ArticleController::class, 'getChoosenArticle']);
+Route::get('/newest-article', [ArticleController::class, 'getNewestArticle']);
+Route::get('/article/{id}', [ArticleController::class, 'getArticleDetail']);
+Route::get('/article/{title}', [ArticleController::class, 'getArticleByTitle']);
+Route::post('/search-article', [ArticleController::class, 'searchArticle']);
+
 
 Route::get('/landing', function () {
     return view('layouts.landing');
