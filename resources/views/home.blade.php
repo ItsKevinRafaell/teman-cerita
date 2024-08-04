@@ -389,15 +389,15 @@
         Artikel <span class="text-gradient-pink">Kesehatan</span> Kami
       </div>
         @php
-            $articles = json_decode($articlesJson, true);
+            $articles = json_decode($dataJson, true);
         @endphp
         <div class="row row-gap-4">
         @forelse ($articles as $article)
           <div class="col-6 col-md-4 col-lg-3 card-article">
             <div class="p-1">
               <div class="card-image-article mb-16 position-relative">
-                <span class="badge h6 text-primary bg-white position-absolute mt-3" style="top: 12px; right: 12px;">{{ \Carbon\Carbon::parse($article['created_at'])->format('d M Y') }}</span>
-                <img src="/assets/images/yoga-register.png" alt="article-img-" class="img-article img-fluid">
+                <span class="badge h6 text-primary bg-white position-absolute mt-3" style="top: 12px; right: 12px;">{{ $article['created_at'] }}</span>
+                <div class="img-article img-fluid" style="background-image: url('{{ asset('/storage/'.$article["thumbnail"]) }}'); background-size: cover; background-position:center; background-repeat: no-repeat;"></div>
               </div>
               <div class="card-content-article">
                 <!-- <div class="h6 text-gray">
@@ -408,9 +408,7 @@
                 </div>
               </div>
               <div class="card-cta-article">
-                <a href="/article-detail.html" class="article-button">
-                  Baca Selengkapnya
-                </a>
+                <a href="/article/{{ $article['slug'] }}" class="article-button">Baca Selengkapnya</a>
               </div>
             </div>
           </div>
@@ -425,30 +423,14 @@
 
     @push("push_js_after")
     <script>
-        document.addEventListener("DOMContentLoaded", function() { 
+        document.addEventListener("DOMContentLoaded", function() {
             var dataJson = @json($dataJson);
- 
+
             var articles = JSON.parse(dataJson);
- 
+
             console.log(Array.isArray(articles));
             console.log(articles);
 
-            // var articlesContainer = document.getElementById('articles');
-
-            // articles.forEach(function(article) {
-            //     var articleElement = document.createElement('div');
-            //     articleElement.className = 'article';
-
-            //     // Create article content
-            //     var content = `
-            //         <h2>${article.title}</h2>
-            //         <img src="/storage/${article.thumbnail}" alt="${article.title}">
-            //         <div>${article.content}</div>
-            //     `;
-
-            //     articleElement.innerHTML = content;
-            //     articlesContainer.appendChild(articleElement);
-            // });
         });
     </script>
     @endpush

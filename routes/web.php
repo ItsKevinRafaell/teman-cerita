@@ -34,10 +34,10 @@ Route::get('/', [GuestController::class, 'home'])->name('home');
 Route::get('/article', [GuestController::class, 'article'])->name('article');
 Route::get('/about', [GuestController::class, 'about'])->name('about');
 Route::get('/contact', [GuestController::class, 'contact'])->name('contact');
-  
+
 Route::get('/article-categories', [ArticleController::class, 'getArticleCategories']);
 Route::get('/choosen-article', [ArticleController::class, 'getChoosenArticle']);
-Route::get('/newest-article', [ArticleController::class, 'getNewestArticle']); 
+Route::get('/newest-article', [ArticleController::class, 'getNewestArticle']);
 Route::get('/article/{slug}', [ArticleController::class, 'getArticleBySlug']);
 Route::post('/search-article', [ArticleController::class, 'searchArticle']);
 
@@ -52,7 +52,7 @@ route::group(['middleware' => 'auth'], function () {
     Route::post('/conversation', [ChatBotController::class, 'getChatResponse']);
 });
 
-route::get('/assessment', [UserAssessment::class, 'getAllAssessment']);
+route::get('/assessment', [UserAssessment::class, 'getAllAssessment'])->name('assessment');
 route::get('/user-assessment', [UserAssessment::class, 'getUserAsssessment']);
 route::get('/user-assessment/{id}', [UserAssessment::class, 'detailUserAssessment']);
 route::post('/assessment', [UserAssessment::class, 'createAssessment']);

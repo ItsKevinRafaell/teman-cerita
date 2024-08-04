@@ -1,4 +1,3 @@
-<!doctype html>
 <html lang="en" data-bs-theme="light">
   <head>
     <meta name="description" content="ruangTenang ai">
@@ -19,6 +18,10 @@
 
     <!-- Bootstrap CSS -->
     <link href="{{ url("https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css") }}" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+
+    {{-- JQUERY --}}
+    <script src="{{ url("https://code.jquery.com/jquery-3.6.0.min.js") }}"></script>
 
 
     <!-- Custom Styling -->
@@ -59,7 +62,7 @@
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav mx-auto my-4 my-lg-0">
                         <a class="nav-link {{ request()->is("/") ? "active" : null }}" aria-current="page" href="{{ route("home") }}">Beranda</a>
-                        <a class="nav-link" href="/assessment.html">Asesmen</a>
+                        <a class="nav-link {{ request()->is("assessment") ? "active" : null }}" aria-current="page" href="{{ route("assessment") }}">Asesmen</a>
                         <a class="nav-link {{ request()->is("about") ? "active" : null }}" href="{{ route("about") }}">Tentang</a>
                         <a class="nav-link {{ request()->is("article") ? "active" : null }}" href="{{ route("article") }}">Artikel</a>
                         <a class="nav-link {{ request()->is("contact") ? "active" : null }}" href="{{ route("contact") }}">Kontak</a>
@@ -87,22 +90,24 @@
       <div class="container">
         <div class="row gap-5 gap-lg-0">
           <div class="col-12 col-lg-3 text-center text-lg-start">
-            <img class="img-fluid" src="/assets/images/logo.svg" alt="logo-footer">
+            <a href="{{ route("home") }}">
+                <img class="img-fluid" src="{{ asset("/assets/images/logo.svg") }}" alt="logo-footer">
+            </a>
           </div>
           <div class="col-12 col-lg-3 text-center text-lg-end">
             <p class="h4 text-white mb-16 "><strong>Pages</strong></p>
-            <p><a href="/index.html" class="h4 text-gray text-decoration-none mb-16">Home</a></p>
-            <p><a href="/about.html" class="h4 text-gray text-decoration-none mb-16">About</a></p>
-            <p><a href="/about.html" class="h4 text-gray text-decoration-none mb-16">Asesmen</a></p>
-            <p><a href="/article.html" class="h4 text-gray text-decoration-none">Article</a></p>
-            <p><a href="/contact.html" class="h4 text-gray text-decoration-none">Contact</a></p>
+            <p><a href="{{ route("home") }}" class="h4 text-gray text-decoration-none mb-16">Home</a></p>
+            <p><a href="{{ route("about") }}" class="h4 text-gray text-decoration-none mb-16">About</a></p>
+            <p><a href="{{ route("assessment") }}" class="h4 text-gray text-decoration-none mb-16">Asesmen</a></p>
+            <p><a href="{{ route("article") }}" class="h4 text-gray text-decoration-none">Article</a></p>
+            <p><a href="{{ route("contact") }}" class="h4 text-gray text-decoration-none">Contact</a></p>
           </div>
           <div class="col-12 col-lg-3 text-center text-lg-end">
             <p class="h4 text-white mb-16 "><strong>Quick Links</strong></p>
-            <p><a href="/index.html#faq" class="h4 text-gray text-decoration-none">FAQ</a></p>
-            <p><a href="/about.html#features" class="h4 text-gray text-decoration-none">Feature</a></p>
-            <p><a href="/about.html#mission" class="h4 text-gray text-decoration-none">Mission</a></p>
-            <p><a href="/article.html" class="h4 text-gray text-decoration-none">Article</a></p>
+            <p><a href="{{ route("home") . '#faq' }}" class="h4 text-gray text-decoration-none">FAQ</a></p>
+            <p><a href="{{ route("about") . '#features' }}" class="h4 text-gray text-decoration-none">Feature</a></p>
+            <p><a href="{{ route("about") . '#mission' }}" class="h4 text-gray text-decoration-none">Mission</a></p>
+            <p><a href="{{ route("article") }}" class="h4 text-gray text-decoration-none">Article</a></p>
           </div>
           <div class="col-12 col-lg-3 text-center text-lg-end">
             <p class="h4 text-white mb-16 "><strong>Social </strong></p>
@@ -125,14 +130,17 @@
 
     <!-- BOOTSTRAP JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="{{ url("https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js") }}" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
     <!-- AOS LIBRARY -->
     <!-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> -->
+    <script src="{{ url("https://unpkg.com/aos@2.3.1/dist/aos.js") }}"></script>
     <script>
       AOS.init();
     </script>
 
     <!-- JS Custom -->
      <script src="/assets/index.js"></script>
+     <script src="{{ asset("/assets/index.js") }}"></script>
   </body>
 </html>

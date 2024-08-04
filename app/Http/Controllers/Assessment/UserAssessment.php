@@ -29,9 +29,10 @@ class UserAssessment extends Controller
 
    function getAllAssessment() {
         $assessmentList = $this->questionnaireType->get(['id', 'name', 'description']);
-        return response()->json([
-            'assessmentList' => $assessmentList
-        ]);
+        // return response()->json([
+        //     'assessmentList' => $assessmentList
+        // ]);
+        return view('assessment', ["assessmentList" => json_encode($assessmentList)]);
    }
 
    function createAssessment(Request $request) {
@@ -44,7 +45,7 @@ class UserAssessment extends Controller
                 'message' => $validator->errors()->first()
             ]);
         }
-        
+
         $newAssessment = Assessment::create([
             'questionnaire_type_id' => $request->questionnaire_type_id,
             'user_id' => auth()->id(),

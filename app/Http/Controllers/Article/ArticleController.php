@@ -119,8 +119,8 @@ class ArticleController extends Controller
         }
 
         $recommendArticles = DB::table('articles')
-            ->leftJoin('users', 'articles.author_id', '=', 'users.id') 
-            ->leftJoin('article_categories', 'articles.category_id', '=', 'article_categories.id') 
+            ->leftJoin('users', 'articles.author_id', '=', 'users.id')
+            ->leftJoin('article_categories', 'articles.category_id', '=', 'article_categories.id')
             ->select([
                 'articles.title',
                 'articles.slug',
@@ -141,6 +141,8 @@ class ArticleController extends Controller
             'recommend_articles' => $recommendArticles->toArray(),
             'detail_articles' => $article,
         ];
+
+        // dd($data);
 
         return view('article-detail', ['dataJson' => json_encode($data)]);
     }
