@@ -8,165 +8,140 @@ use App\Models\Article;
 use Illuminate\Http\Request;
 use App\Models\ArticleCategory;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class ArticleController extends Controller
 {
     public function getArticleCategories()
     {
-        $categories = ArticleCategory::all()
-            ->map(function ($category) {
-                return [
-                    'id' => $category->id,
-                    'name' => $category->name,
-                    'description' => $category->description,
-                    'article_count' => $category->articles_count,
-                ];
-            });
+        $categories = DB::table('article_categories')
+            ->select([
+                'id',
+                'name',
+                'description',
+                DB::raw('(SELECT COUNT(*) FROM articles WHERE articles.category_id = article_categories.id) as article_count')
+            ])
+            ->get();
 
         return response()->json($categories);
     }
 
     public function getChoosenArticle()
     {
-        $articles = Article::where('is_choosen', true)
-            ->with(['author', 'category'])
-            ->get()
-            ->map(function ($article) {
-                return [
-                    'title' => $article->title,
-                    'slug' => $article->slug,
-                    'thumbnail' => $article->thumbnail,
-                    'content' => $article->content,
-                    'created_at' => Carbon::parse($article->created_at)->format('d M Y'),
-                    // 'updated_at' => Carbon::parse($article->updated_at)->format('d M Y'),
-                    'author_name' => $article->author ? $article->author->name : null,
-                    'category_name' => $article->category ? $article->category->name : null,
-                ];
-            });
+        $articles = DB::table('articles')
+            ->leftJoin('users', 'articles.author_id', '=', 'users.id')
+            ->leftJoin('article_categories', 'articles.category_id', '=', 'article_categories.id')
+            ->select([
+                'articles.title',
+                'articles.slug',
+                'articles.thumbnail',
+                'articles.content',
+                DB::raw('DATE_FORMAT(articles.created_at, "%d %b %Y") as created_at'),
+                DB::raw('COALESCE(users.name, "anonymous") as author_name'),
+                DB::raw('COALESCE(article_categories.name, "anonymous") as category_name'),
+            ])
+            ->where('articles.is_choosen', true)
+            ->get();
 
         return response()->json($articles);
     }
 
     public function getNewestArticle()
     {
-        $article = Article::latest()->first();
+        $article = DB::table('articles')
+            ->leftJoin('users', 'articles.author_id', '=', 'users.id')
+            ->leftJoin('article_categories', 'articles.category_id', '=', 'article_categories.id')
+            ->select([
+                'articles.title',
+                'articles.slug',
+                'articles.thumbnail',
+                'articles.content',
+                DB::raw('DATE_FORMAT(articles.created_at, "%d %b %Y") as created_at'),
+                DB::raw('COALESCE(users.name, "anonymous") as author_name'),
+                DB::raw('COALESCE(article_categories.name, "anonymous") as category_name'),
+            ])
+            ->latest()
+            ->first();
 
         if (!$article) {
             return response()->json(['message' => 'Tidak ada Artikel'], 404);
         }
 
-        $articleData = [
-            'title' => $article->title,
-            'slug' => $article->slug,
-            'thumbnail' => $article->thumbnail,
-            'content' => $article->content,
-            'created_at' => Carbon::parse($article->created_at)->format('d M Y'),
-            // 'updated_at' => Carbon::parse($article->updated_at)->format('d M Y'),
-            'author_name' => $article->author ? $article->author->name : null,
-            'category_name' => $article->category ? $article->category->name : null,
-        ];
-
-        return response()->json($articleData);
+        return response()->json($article);
     }
 
     public function searchArticle(Request $request)
     {
         $searchTerm = $request->input('search', '');
 
-        $articles = Article::where('title', 'like', '%' . $searchTerm . '%')
-            ->orWhere('content', 'like', '%' . $searchTerm . '%')
-            ->with(['author', 'category'])
-            ->get()
-            ->map(function ($article) {
-                return [
-                    'title' => $article->title,
-                    'slug' => $article->slug,
-                    'thumbnail' => $article->thumbnail,
-                    'content' => $article->content,
-                    'created_at' => Carbon::parse($article->created_at)->format('d M Y'),
-                    // 'updated_at' => Carbon::parse($article->updated_at)->format('d M Y'),
-                    'author_name' => $article->author ? $article->author->name : null,
-                    'category_name' => $article->category ? $article->category->name : null,
-                ];
-            });
+        $articles = DB::table('articles')
+            ->leftJoin('users', 'articles.author_id', '=', 'users.id')
+            ->leftJoin('categories', 'articles.category_id', '=', 'categories.id')
+            ->select([
+                'articles.title',
+                'articles.slug',
+                'articles.thumbnail',
+                'articles.content',
+                DB::raw('DATE_FORMAT(articles.created_at, "%d %b %Y") as created_at'),
+                DB::raw('COALESCE(users.name, "anonymous") as author_name'),
+                DB::raw('COALESCE(categories.name, "anonymous") as category_name'),
+            ])
+            ->where('articles.title', 'like', '%' . $searchTerm . '%')
+            ->orWhere('articles.content', 'like', '%' . $searchTerm . '%')
+            ->get();
 
         return response()->json($articles);
     }
 
-    // public function getArticleDetail($id)
-    // {
-    //     $article = Article::with(['author', 'category'])->find($id);
-
-    //     if (!$article) {
-    //         return response()->json(['message' => 'Article not found'], 404);
-    //     }
-
-    //     $articleData = [
-    //         'title' => $article->title,
-    //         'thumbnail' => $article->thumbnail,
-    //         'content' => $article->content,
-    //         'created_at' => Carbon::parse($article->created_at)->format('d M Y'),
-    //         // 'updated_at' => Carbon::parse($article->updated_at)->format('d M Y'),
-    //         'author_name' => $article->author ? $article->author->name : null,
-    //         'author_avatar' => $article->author ? $article->author->avatar : null,
-    //         'category_name' => $article->category ? $article->category->name : null,
-    //     ];
-
-    //     return response()->json($articleData);
-    //     // return view('article-detail', ['articleData' => $articleData]);
-    // }
-
-    public function getArticleDetail($slug)
+    public function getArticleBySlug($slug)
     {
         $decodedSlug = urldecode($slug);
 
-        $article = Article::with(['author', 'category'])
-            ->where('slug', $decodedSlug)
+        $article = DB::table('articles')
+            ->leftJoin('users', 'articles.author_id', '=', 'users.id')
+            ->leftJoin('article_categories', 'articles.category_id', '=', 'article_categories.id')
+            ->select([
+                // 'articles.slug',
+                'articles.title',
+                'articles.thumbnail',
+                'articles.content',
+                DB::raw('DATE_FORMAT(articles.created_at, "%d %b %Y") as created_at'),
+                DB::raw('COALESCE(users.name, "anonymous") as author_name'),
+                DB::raw('COALESCE(users.avatar, "default-avatar.png") as author_avatar'),
+                DB::raw('COALESCE(article_categories.name, "anonymous") as category_name'),
+            ])
+            ->where('articles.slug', $decodedSlug)
             ->first();
 
         if (!$article) {
             return response()->json(['message' => 'Article not found'], 404);
         }
 
-        $articleData = [
-            'title' => $article->title,
-            'slug' => $article->slug,
-            'thumbnail' => $article->thumbnail,
-            'content' => $article->content,
-            'created_at' => Carbon::parse($article->created_at)->format('d M Y'),
-            'updated_at' => Carbon::parse($article->updated_at)->format('d M Y'),
-            'author_name' => $article->author ? $article->author->name : null,
-            'author_avatar' => $article->author ? $article->author->avatar : null,
-            'category_name' => $article->category ? $article->category->name : null,
-        ];
-
-        $recommendArticles = Article::with(['author', 'category'])
-            ->where('slug', '!=', $decodedSlug)
+        $recommendArticles = DB::table('articles')
+            ->leftJoin('users', 'articles.author_id', '=', 'users.id') 
+            ->leftJoin('article_categories', 'articles.category_id', '=', 'article_categories.id') 
+            ->select([
+                'articles.title',
+                'articles.slug',
+                'articles.thumbnail',
+                'articles.content',
+                DB::raw('DATE_FORMAT(articles.created_at, "%d %b %Y") as created_at'),
+                DB::raw('COALESCE(users.avatar, "default-avatar.png") as author_avatar'),
+                DB::raw('COALESCE(users.name, "anonymous") as author_name'),
+                DB::raw('COALESCE(article_categories.name, "anonymous") as category_name'),
+            ])
+            ->where('articles.slug', '!=', $decodedSlug)
             ->latest()
             ->limit(3)
-            ->get()
-            ->map(function ($recommendArticle) {
-                return [
-                    'title' => $recommendArticle->title,
-                    'slug' => $recommendArticle->slug,
-                    'thumbnail' => $recommendArticle->thumbnail,
-                    'content' => $recommendArticle->content,
-                    'created_at' => Carbon::parse($recommendArticle->created_at)->format('d M Y'),
-                    // 'updated_at' => Carbon::parse($recommendArticle->updated_at)->format('d M Y'),
-                    'author_avatar' => $recommendArticle->author ? $recommendArticle->author->avatar : null,
-                    'author_name' => $recommendArticle->author ? $recommendArticle->author->name : null,
-                    'category_name' => $recommendArticle->category ? $recommendArticle->category->name : null,
-                ];
-            });
+            ->get();
 
 
         $data = [
             'recommend_articles' => $recommendArticles->toArray(),
-            'detail_articles' => $articleData,
+            'detail_articles' => $article,
         ];
 
-        // return view('article-detail', ['dataJson' => json_encode($data)]); 
-        return response()->json($data);
+        return view('article-detail', ['dataJson' => json_encode($data)]);
     }
 }
