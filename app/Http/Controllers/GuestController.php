@@ -33,10 +33,11 @@ class GuestController extends Controller
     {
         $articles = DB::table('articles')
             ->select([
-                'articles.slug',
-                'articles.title',
-                'articles.thumbnail',
-                'articles.content',
+                'articles.slug as article_slug',
+                'articles.title as article_title',
+                'articles.thumbnail as article_thumbnail',
+                'articles.content as article_content',
+                'articles.created_at as article_created_at',
                 DB::raw('DATE_FORMAT(articles.created_at, "%d %b %Y") as created_at'),
                 'users.name as author_name',
                 'article_categories.name as category_name'
@@ -78,6 +79,12 @@ class GuestController extends Controller
         ];
 
         return view('article', ['dataJson' => json_encode($data)]);
+    }
+
+    public function articleCategory($id){
+        $articles = DB::table('articles')->where('category_id', $id)->get();
+
+        dd($articles);
     }
 
     public function about()

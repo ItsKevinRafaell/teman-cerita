@@ -32,6 +32,7 @@ Route::get('cek', function(){
 
 Route::get('/', [GuestController::class, 'home'])->name('home');
 Route::get('/article', [GuestController::class, 'article'])->name('article');
+Route::get('/article/category/{id}', [GuestController::class, 'articleCategory'])->name('articleCategory');
 Route::get('/about', [GuestController::class, 'about'])->name('about');
 Route::get('/contact', [GuestController::class, 'contact'])->name('contact');
 
@@ -39,7 +40,7 @@ Route::get('/article-categories', [ArticleController::class, 'getArticleCategori
 Route::get('/choosen-article', [ArticleController::class, 'getChoosenArticle']);
 Route::get('/newest-article', [ArticleController::class, 'getNewestArticle']);
 Route::get('/article/{slug}', [ArticleController::class, 'getArticleBySlug']);
-Route::post('/search-article', [ArticleController::class, 'searchArticle']);
+Route::post('/search-article', [ArticleController::class, 'searchArticle'])->name('searchArticle');
 
 Route::get('/landing', function () {
     return view('layouts.landing');

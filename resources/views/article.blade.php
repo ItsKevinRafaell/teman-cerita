@@ -13,91 +13,48 @@
     <!-- END::HERO -->
 
 
+    @php
+        $dataJson = json_decode($dataJson, true);
+    @endphp
+
+
     <!-- START::CONTENT -->
     <section class="container bg-primary mt-48">
         <div class="row d-flex row-gap-5">
 
             <div class="col-12 col-lg-8 flex-nowrap order-last order-lg-first">
-                <form action="#" class="input-group flex-nowrap mb-48">
+                <form action="{{ route("searchArticle") }}" class="input-group flex-nowrap mb-48" method="GET" style="border-radius: 12px">
+                    @csrf
                     <input type="text" class="form-control search text-white" placeholder="Cari Artikel" aria-label="Username" aria-describedby="addon-wrapping">
-                    <button class="tertiary-button" type="button" id="button-addon2">Cari</button>
+                    <button class="tertiary-button" type="submit" id="button-addon2">Cari</button>
                 </form>
                 <div class="row">
-                    <h3 class="h3 text-white mb-48"><span class="text-gradient-pink">12032</span> Artikel Kesehatan Ditemukan</h3>
+                    @if($dataJson['total_articles_count'] > 0)
+                        <h3 class="h3 text-white mb-48"><span class="text-gradient-pink-2">{{ $dataJson['total_articles_count'] }}</span> Artikel Kesehatan Ditemukan</h3>
+                    @else
+                        <h3 class="h3 text-white mb-48">Artikel Kesehatan Tidak Ditemukan</h3>
+                    @endif
 
-                    <a href="/article-detail.html" class="card-article-page text-decoration-none">
-                        <div class="d-flex align-items-center p-1">
-                            <div class="card-image-article-page">
-                              <img src="/assets/images/yoga-login.png" alt="article-img-" class="img-article-page" style="background-size: cover;">
-                            </div>
-                            <div class="card-content-article-page">
-                                <div class="h6 text-white">
-                                    <strong>Frederick Octo Ramadani</strong> <span class="text-gray">in</span> <span class="text-gradient-pink-2"><strong>Mental Health</strong></span>
+                    @foreach ($dataJson['latest_articles'] as $article)
+                        <div class="divider-2"></div>
+                        <a href="/article/{{ $article['article_slug'] }}" class="card-article-page text-decoration-none">
+                            <div class="d-flex align-items-center p-1">
+                                <div class="card-image-article-page">
+                                  <div class="img-article-page" style="background-image: url('{{ asset('/storage/'.$article["article_thumbnail"]) }}'); background-size: cover; background-position:center; background-repeat: no-repeat;"></div>
                                 </div>
-                                <div class="h4 text-white title-article">
-                                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, nobis voluptatibus doloribus distinctio exercitationem quia, nulla libero quasi debitis ex cupiditate soluta id placeat dolore facilis nemo est iste blanditiis.
+                                <div class="card-content-article-page">
+                                    <div class="h6 text-white">
+                                        <strong>{{ $article['author_name'] }}</strong> <span class="text-gray">in</span> <span class="text-gradient-pink-2"><strong>{{ $article['category_name'] }}</strong></span>
+                                    </div>
+                                    <div class="h4 text-white title-article">
+                                      {{ $article['article_title'] }}
+                                    </div>
+                                    <div class="h6 text-gray">{{ $article['article_created_at'] }}</div>
                                 </div>
-                                <div class="h6 text-gray">22 January 2024</div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    @endforeach
 
-                    <div class="divider-2"></div>
-
-                    <a href="/article-detail.html" class="card-article-page text-decoration-none">
-                        <div class="d-flex align-items-center p-1">
-                            <div class="card-image-article-page mb-16 mr-48">
-                              <img src="/assets/images/yoga-login.png" alt="article-img-" class="img-article-page" style="background-size: cover;">
-                            </div>
-                            <div class="card-content-article-page">
-                                <div class="h6 text-white">
-                                    <strong>Frederick Octo Ramadani</strong> <span class="text-gray">in</span> <span class="text-gradient-pink-2"><strong>Mental Health</strong></span>
-                                </div>
-                                <div class="h4 text-white title-article">
-                                  Skandal terbaru!, ternyata ini tutorial cara cepat kaya versi anak orang kaya dan terbaru
-                                </div>
-                                <div class="h6 text-gray">22 January 2024</div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <div class="divider-2"></div>
-
-                    <a href="/article-detail.html" class="card-article-page text-decoration-none">
-                        <div class="d-flex align-items-center p-1">
-                            <div class="card-image-article-page mb-16 mr-48">
-                              <img src="/assets/images/yoga-login.png" alt="article-img-" class="img-article-page" style="background-size: cover;">
-                            </div>
-                            <div class="card-content-article-page">
-                                <div class="h6 text-white">
-                                    <strong>Frederick Octo Ramadani</strong> <span class="text-gray">in</span> <span class="text-gradient-pink-2"><strong>Mental Health</strong></span>
-                                </div>
-                                <div class="h4 text-white title-article">
-                                  Skandal terbaru!, ternyata ini tutorial cara cepat kaya versi anak orang kaya dan terbaru
-                                </div>
-                                <div class="h6 text-gray">22 January 2024</div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <div class="divider-2"></div>
-
-                    <a href="/article-detail.html" class="card-article-page text-decoration-none">
-                        <div class="d-flex align-items-center p-1">
-                            <div class="card-image-article-page mb-16 mr-48">
-                              <img src="/assets/images/yoga-login.png" alt="article-img-" class="img-article-page" style="background-size: cover;">
-                            </div>
-                            <div class="card-content-article-page">
-                                <div class="h6 text-white">
-                                    <strong>Frederick Octo Ramadani</strong> <span class="text-gray">in</span> <span class="text-gradient-pink-2"><strong>Mental Health</strong></span>
-                                </div>
-                                <div class="h4 text-white title-article">
-                                  Skandal terbaru!, ternyata ini tutorial cara cepat kaya versi anak orang kaya dan terbaru
-                                </div>
-                                <div class="h6 text-gray">22 January 2024</div>
-                            </div>
-                        </div>
-                    </a>
                 </div>
             </div>
 
@@ -108,16 +65,13 @@
                     </div>
 
                     <div class="flex-wrap">
-                        <a href="/article-category.html" class="badge text-decoration-none h6 text-primary badge-category">
-                            Mental Health (22)
-                        </a>
-                        <a href="/" class="badge text-decoration-none h6 text-primary badge-category">
-                            Tips (4)
-                        </a>
-                        <a href="/" class="badge text-decoration-none h6 text-primary badge-category">
-                            Healthy Food (18)
-                        </a>
-
+                        @forelse ($dataJson['chosen_categories'] as $category)
+                            <a href="/article-category.html" class="badge text-decoration-none h6 text-primary badge-category">
+                                {{ $category['name'] }}
+                            </a>
+                        @empty
+                            <h5 class="h5 text-white">Tidak ada kategori</h5>
+                        @endforelse
                     </div>
 
                     <hr class="divider-2">
@@ -126,29 +80,18 @@
                         Artikel Pilihan
                     </div>
 
-                    <div class="d-flex align-items-center mb-4">
-                        <img src="{{ asset("/assets/images/faq.png") }}" alt="faq" class="img-picked-article mr-8">
+                    @forelse ($dataJson['chosen_articles'] as $data)
+                        <div class="d-flex align-items-center mb-4">
+                            <img src="{{ asset('/storage/' . $data['thumbnail']) }}" alt="faq" class="img-picked-article mr-8" style="border-radius: 8px;">
 
-                        <a href="/article-detail.html" class=" title-article text-white">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos, nihil.
-                        </a>
-                    </div>
+                            <a href="/article/{{ $data['slug'] }}" class=" title-article text-white">
+                                {{ $data['title'] }}
+                            </a>
+                        </div>
+                    @empty
 
-                    <div class="d-flex align-items-center mb-4">
-                        <img src="{{ asset("/assets/images/faq.png") }}" alt="faq" class="img-picked-article mr-8">
+                    @endforelse
 
-                        <a href="/article-detail.html" class=" title-article text-white">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos, nihil.
-                        </a>
-                    </div>
-
-                    <div class="d-flex align-items-center mb-4">
-                        <img src="{{ asset("/assets/images/faq.png") }}" alt="faq" class="img-picked-article mr-8">
-
-                        <a href="/article-detail.html" class=" title-article text-white">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos, nihil.
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -157,11 +100,11 @@
 
     @push("push_js_after")
     <script>
-        document.addEventListener("DOMContentLoaded", function() { 
+        document.addEventListener("DOMContentLoaded", function() {
             var dataJson = @json($dataJson);
- 
+
             var articles = JSON.parse(dataJson);
- 
+
             console.log(Array.isArray(articles));
             console.log(articles);
 

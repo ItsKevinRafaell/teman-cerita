@@ -1178,7 +1178,7 @@ span.badge{
 .search{
   background-color: var(--color-primary);
   border: 1px solid var(--color-white) !important;
-  border-radius: 12px;
+  border-radius: 12px 0px 0px 12px !important;
   padding: 12px 24px;
   color: var(--color-white) !important;
 }
@@ -1192,6 +1192,10 @@ span.badge{
   background-color: var(--card-color);
   box-shadow: none;
   color: var(--color-white) !important;
+}
+
+.input-group{
+    border-radius: 12px !important;
 }
 
 .input-group button{

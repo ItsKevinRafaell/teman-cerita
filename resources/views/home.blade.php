@@ -414,7 +414,7 @@
           </div>
         @empty
         <div class="col-12 text-center">
-            <h3 class="h3">Tidak Ada Artikel</h3>
+            <h3 class="h3 text-white my-5">Tidak Ada Artikel</h3>
         </div>
         @endforelse
         </div>
