@@ -74,10 +74,10 @@ class ArticleController extends Controller
     public function searchArticle(Request $request)
     {
         $searchTerm = $request->input('search', '');
-
+        // dd($searchTerm);
         $articles = DB::table('articles')
             ->leftJoin('users', 'articles.author_id', '=', 'users.id')
-            ->leftJoin('categories', 'articles.category_id', '=', 'categories.id')
+            ->leftJoin('article_categories', 'articles.category_id', '=', 'article_categories.id')
             ->select([
                 'articles.title',
                 'articles.slug',
@@ -85,13 +85,15 @@ class ArticleController extends Controller
                 'articles.content',
                 DB::raw('DATE_FORMAT(articles.created_at, "%d %b %Y") as created_at'),
                 DB::raw('COALESCE(users.name, "anonymous") as author_name'),
-                DB::raw('COALESCE(categories.name, "anonymous") as category_name'),
+                DB::raw('COALESCE(article_categories.name, "anonymous") as category_name'),
             ])
             ->where('articles.title', 'like', '%' . $searchTerm . '%')
-            ->orWhere('articles.content', 'like', '%' . $searchTerm . '%')
+            // ->orWhere('articles.content', 'like', '%' . $searchTerm . '%')
             ->get();
 
-        return response()->json($articles);
+        return response()->json([
+            'latest_articles' => $articles
+        ]);
     }
 
     public function getArticleBySlug($slug)
